@@ -1,10 +1,11 @@
 # Programmeerproject Rebecca de Feijter - Ecological footprint and globalisation
 
 ## Projectvoorstel:
-
+(ik ben niet heel enthousiast over de originaliteit van het onderwerp, maar het is best informatief denk ik)
 ### Probleem:
 Gebrek aan kennis over het verband tussen de globalisatiegraad van landen en de ecologische voetafdruk van landen.
 Doelgroep: mensen met interesse in de actuele onderwerpen klimaatverandering, milieubeleid en ontwikkelingshulp.
+Doel: illustreren dat de ontwikkeling van landen ondanks het plezier ervan ook negatieve gevolgen heeft, namelijk voor het milieu.
 
 ### Oplossing:
 Een visualisatie van de verbanden tussen globalisatie, ecologische impact en ontwikkelingshulp.
