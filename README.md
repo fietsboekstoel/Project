@@ -1,4 +1,5 @@
-# Programmeerproject Rebecca de Feijter - Ecological footprint and globalisation
+# Programmeerproject Rebecca de Feijter
+# Ecological footprint and globalisation
 
 ## Projectvoorstel:
 (ik ben niet heel enthousiast over de originaliteit van het onderwerp, maar het is best informatief denk ik)
