@@ -12,6 +12,9 @@ Doel: illustreren dat de ontwikkeling van landen ondanks het plezier ervan ook n
 Een visualisatie van de verbanden tussen globalisatie, ecologische impact en ontwikkelingshulp.
 Schets hiervan met informatie over de interactieve onderdelen en dergelijke is te vinden in het mapje "doc".
 
+### Sketch:
+![](doc/project_sketch.jpg)
+
 ### Prerequisites:
 #### Data sources:
 - Global Footprint Network (http://data.footprintnetwork.org/#/countryTrends?cn=5001&type=earth)
