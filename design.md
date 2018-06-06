@@ -12,7 +12,7 @@
 ### project.html
 - d3 (met tip en queue) importeren
 - bootstrap importeren
-- indeling pagina bepalen obv divs mbv bootstrap (zoals gedaan in linked views opdracht)
+- indeling pagina bepalen obv divs mbv bootstrap (zoals gedaan in linked views opdracht van Data processing)
 - slider toevoegen voor updaten van map en scatter
 - buttons toevoegen voor verschillende y-variabelen in scatter
 - navigatiebalk toevoegen met link naar data source en verschillende tabs voor informatieve homepage en pagina met grafieken?
@@ -29,8 +29,8 @@
 - error check niet vergeten
 - alleen punten meenemen waarvan geen data missen? (zowel wat betreft jaar als andere variabelen)
 - data importeren
-  * footprint = API (1961-2014)
-  * Extra variabelen = csv per variabele (?) (min 1970 - max 2014)
+  * footprint = API te downloaden als JSON (1961-2014) van ruim 200 landen --> functie schrijven die per land reduceert tot dict met nodige variabelen (of proberen het geheel als 1 API te downloaden)
+  * Extra variabelen = csv per variabele (?) (min 1970 - max 2014) --> convert to JSON zoals bij Data processing week 3
 - welk format heb ik nodig voor map maken?
 - dict maken per land voor scatter
 - dict maken per land/per subvariabele voor filled line graph
