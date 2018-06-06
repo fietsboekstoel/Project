@@ -70,3 +70,19 @@
 - tooltip toevoegen obv selectie (u)
 - area onder de lijnen inkleuren obv values adhv kleurenrange
 - info/beschrijving/references bij grafiek toevoegen?
+
+
+## Verdere ideeën etc:
+- Slider ook kleuren of met blije en boze smiley maken oid obv de values in dat jaar (omdat het in z'n geheel allemaal steeds meer verslechtert)
+- In de scatter: alle punten voor dat jaar in heel lichtgrijs in de graph zetten en dan het huidige punt in een duidelijke kleur, zodat je trends eventueel ook kan zien (maar ligt eraan hoeveel punten er dan in de grafiek staan).
+- Instructies voor gebruik ook als tab/tooltip/menu om ruimte te besparen.
+
+## Eerste grote stappen:
+- Uitvinden hoe je een map maakt en wat je daarvoor nodig hebt qua dataformat
+- Data importeren
+- Bedenken hoe om te gaan met missing data
+
+## Later niet vergeten:
+- Handige/leuke plek vinden om datasets etc te referencen
+- Mooie overgangen maken
+- Elke dag pushen
