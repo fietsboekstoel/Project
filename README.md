@@ -2,18 +2,17 @@
 # Ecological footprint and globalisation
 
 ## Projectvoorstel:
-(ik ben niet heel enthousiast over de originaliteit van het onderwerp, maar het is best informatief denk ik)
 ### Probleem:
-Gebrek aan kennis over het verband tussen de globalisatiegraad van landen en de ecologische voetafdruk van landen.
+Gebrek aan kennis over de groei van onze ecological footprint en het verband van factoren zoals de globalisatiegraad van landen met de ecologische voetafdruk van landen.
 Doelgroep: mensen met interesse in de actuele onderwerpen klimaatverandering, milieubeleid en ontwikkelingshulp.
-Doel: illustreren dat de ontwikkeling van landen ondanks het plezier ervan ook negatieve gevolgen heeft, namelijk voor het milieu.
+Doel: illustreren dat/of de ontwikkeling van landen ondanks het plezier ervan ook negatieve gevolgen heeft, namelijk voor het milieu.
 
 ### Oplossing:
 Een visualisatie van de verbanden tussen globalisatie, ecologische impact en ontwikkelingshulp.
 Schets hiervan met informatie over de interactieve onderdelen en dergelijke is te vinden in het mapje "doc".
 
 ### Sketch:
-![](doc/project_sketch.jpg)
+![](doc/proposalversie2.jpg)
 
 ### Prerequisites:
 #### Data sources:
@@ -23,7 +22,7 @@ Eventueel:
 - World Bank Population data (https://data.worldbank.org/indicator/SP.POP.TOTL?view=chart) (of vergelijkbare sets)
 
 #### External components:
-- d3 (met tooltip en wellicht queue)
+- d3 (met tooltip en queue)
 - bootstrap
 
 #### Review:
