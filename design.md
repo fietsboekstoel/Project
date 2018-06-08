@@ -77,6 +77,7 @@
 - In de scatter: alle punten voor dat jaar in heel lichtgrijs in de graph zetten en dan het huidige punt in een duidelijke kleur, zodat je trends eventueel ook kan zien (maar ligt eraan hoeveel punten er dan in de grafiek staan).
 - Instructies voor gebruik ook als tab/tooltip/menu om ruimte te besparen.
 - Play/pause knop voor de slider?
+- Datapunt in scatter op laten lichten bij hoveren over map
 
 ## Eerste grote stappen:
 - Uitvinden hoe je een map maakt en wat je daarvoor nodig hebt qua dataformat
