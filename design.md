@@ -78,6 +78,7 @@
 - Instructies voor gebruik ook als tab/tooltip/menu om ruimte te besparen.
 - Play/pause knop voor de slider?
 - Datapunt in scatter op laten lichten bij hoveren over map
+- Op kleur/waarde alle landen selecteren die daarbinnen vallen?
 
 ## Eerste grote stappen:
 - Uitvinden hoe je een map maakt en wat je daarvoor nodig hebt qua dataformat
