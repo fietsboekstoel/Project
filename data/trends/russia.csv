@@ -1,36 +1,35 @@
 Country Name,Short Name,year,Record,Built-up Land,Carbon,Cropland,Fishing Grounds,Forest Products,Grazing Land,Total,Data Quality Score,isoa2
-USSR,USSR,1961,Earths,null,null,null,null,null,null,1.26040671486875,2B,SUN
-USSR,USSR,1962,Earths,null,null,null,null,null,null,1.30390154331477,2B,SUN
-USSR,USSR,1963,Earths,null,null,null,null,null,null,1.35659684618554,2B,SUN
-USSR,USSR,1964,Earths,null,null,null,null,null,null,1.47613112497027,2B,SUN
-USSR,USSR,1965,Earths,null,null,null,null,null,null,1.49876652328897,2B,SUN
-USSR,USSR,1966,Earths,null,null,null,null,null,null,1.61583722076147,2B,SUN
-USSR,USSR,1967,Earths,null,null,null,null,null,null,1.64892625047019,2B,SUN
-USSR,USSR,1968,Earths,null,null,null,null,null,null,1.7257728287861,2B,SUN
-USSR,USSR,1969,Earths,null,null,null,null,null,null,1.76972804119612,2B,SUN
-USSR,USSR,1970,Earths,null,null,null,null,null,null,1.89810276999634,2B,SUN
-USSR,USSR,1971,Earths,null,null,null,null,null,null,1.95000070179434,2B,SUN
-USSR,USSR,1972,Earths,null,null,null,null,null,null,2.06262326091356,2B,SUN
-USSR,USSR,1973,Earths,null,null,null,null,null,null,2.2583936652202,2B,SUN
-USSR,USSR,1974,Earths,null,null,null,null,null,null,2.28574534936303,2B,SUN
-USSR,USSR,1975,Earths,null,null,null,null,null,null,2.35954659354141,2B,SUN
-USSR,USSR,1976,Earths,null,null,null,null,null,null,2.50382292869589,2B,SUN
-USSR,USSR,1977,Earths,null,null,null,null,null,null,2.48835080001875,2B,SUN
-USSR,USSR,1978,Earths,null,null,null,null,null,null,2.55461909176322,2B,SUN
-USSR,USSR,1979,Earths,null,null,null,null,null,null,2.58978797158741,2B,SUN
-USSR,USSR,1980,Earths,null,null,null,null,null,null,2.66344457213853,2B,SUN
-USSR,USSR,1981,Earths,null,null,null,null,null,null,2.5869737155567,2B,SUN
-USSR,USSR,1982,Earths,null,null,null,null,null,null,2.62182970427306,2B,SUN
-USSR,USSR,1983,Earths,null,null,null,null,null,null,2.66911966633076,2B,SUN
-USSR,USSR,1984,Earths,null,null,null,null,null,null,2.66681084117295,2B,SUN
-USSR,USSR,1985,Earths,null,null,null,null,null,null,2.73480170300435,2B,SUN
-USSR,USSR,1986,Earths,null,null,null,null,null,null,2.8018899239481,2B,SUN
-USSR,USSR,1987,Earths,null,null,null,null,null,null,2.91336811876919,2B,SUN
-USSR,USSR,1988,Earths,null,null,null,null,null,null,2.87048811562663,2B,SUN
-USSR,USSR,1989,Earths,null,null,null,null,null,null,2.91427138803073,2B,SUN
-USSR,USSR,1990,Earths,null,null,null,null,null,null,2.83789528548245,2B,SUN
-USSR,USSR,1991,Earths,null,null,null,null,null,null,2.77250066753816,2B,SUN
-Country Name,Short Name,year,Record,Built-up Land,Carbon,Cropland,Fishing Grounds,Forest Products,Grazing Land,Total,Data Quality Score,isoa2
+Russian Federation,Russia,1961,Earths,null,null,null,null,null,null,1.26040671486875,2B,SUN
+Russian Federation,Russia,1962,Earths,null,null,null,null,null,null,1.30390154331477,2B,SUN
+Russian Federation,Russia,1963,Earths,null,null,null,null,null,null,1.35659684618554,2B,SUN
+Russian Federation,Russia,1964,Earths,null,null,null,null,null,null,1.47613112497027,2B,SUN
+Russian Federation,Russia,1965,Earths,null,null,null,null,null,null,1.49876652328897,2B,SUN
+Russian Federation,Russia,1966,Earths,null,null,null,null,null,null,1.61583722076147,2B,SUN
+Russian Federation,Russia,1967,Earths,null,null,null,null,null,null,1.64892625047019,2B,SUN
+Russian Federation,Russia,1968,Earths,null,null,null,null,null,null,1.7257728287861,2B,SUN
+Russian Federation,Russia,1969,Earths,null,null,null,null,null,null,1.76972804119612,2B,SUN
+Russian Federation,Russia,1970,Earths,null,null,null,null,null,null,1.89810276999634,2B,SUN
+Russian Federation,Russia,1971,Earths,null,null,null,null,null,null,1.95000070179434,2B,SUN
+Russian Federation,Russia,1972,Earths,null,null,null,null,null,null,2.06262326091356,2B,SUN
+Russian Federation,Russia,1973,Earths,null,null,null,null,null,null,2.2583936652202,2B,SUN
+Russian Federation,Russia,1974,Earths,null,null,null,null,null,null,2.28574534936303,2B,SUN
+Russian Federation,Russia,1975,Earths,null,null,null,null,null,null,2.35954659354141,2B,SUN
+Russian Federation,Russia,1976,Earths,null,null,null,null,null,null,2.50382292869589,2B,SUN
+Russian Federation,Russia,1977,Earths,null,null,null,null,null,null,2.48835080001875,2B,SUN
+Russian Federation,Russia,1978,Earths,null,null,null,null,null,null,2.55461909176322,2B,SUN
+Russian Federation,Russia,1979,Earths,null,null,null,null,null,null,2.58978797158741,2B,SUN
+Russian Federation,Russia,1980,Earths,null,null,null,null,null,null,2.66344457213853,2B,SUN
+Russian Federation,Russia,1981,Earths,null,null,null,null,null,null,2.5869737155567,2B,SUN
+Russian Federation,Russia,1982,Earths,null,null,null,null,null,null,2.62182970427306,2B,SUN
+Russian Federation,Russia,1983,Earths,null,null,null,null,null,null,2.66911966633076,2B,SUN
+Russian Federation,Russia,1984,Earths,null,null,null,null,null,null,2.66681084117295,2B,SUN
+Russian Federation,Russia,1985,Earths,null,null,null,null,null,null,2.73480170300435,2B,SUN
+Russian Federation,Russia,1986,Earths,null,null,null,null,null,null,2.8018899239481,2B,SUN
+Russian Federation,Russia,1987,Earths,null,null,null,null,null,null,2.91336811876919,2B,SUN
+Russian Federation,Russia,1988,Earths,null,null,null,null,null,null,2.87048811562663,2B,SUN
+Russian Federation,Russia,1989,Earths,null,null,null,null,null,null,2.91427138803073,2B,SUN
+Russian Federation,Russia,1990,Earths,null,null,null,null,null,null,2.83789528548245,2B,SUN
+Russian Federation,Russia,1991,Earths,null,null,null,null,null,null,2.77250066753816,2B,SUN
 Russian Federation,Russia,1992,Earths,0.0174484907343753,2.17110973097995,0.62353922789381,0.0920392392409192,0.424877101054709,0.0669646752001764,3.39597846510394,3A,RU
 Russian Federation,Russia,1993,Earths,0.0167459792129229,2.00678060938216,0.528109844168326,0.0715421462403034,0.308796303182615,0.0858271249241314,3.01780200711045,3A,RU
 Russian Federation,Russia,1994,Earths,0.0150068202295571,1.76908076323082,0.438679310947956,0.0631174381729351,0.180310042469375,0.0907029566388612,2.55689733168951,3A,RU
