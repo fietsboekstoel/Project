@@ -31,3 +31,19 @@
 - csv's eindelijk eens af hebben
 - landcodes van 2 naar 3 letters
 - missing data signaleren en verwerken
+
+## 12 juni 2018:
+### Gedaan:
+- csv's afgemaakt
+- landcodes toegevoegd
+- json's gemaakt van de csv's (3 stuks, namelijk: 1) alle footprint data, 2) alle extra variabelen behalve de globalisatiegraad, en 3) de globalisatie data)
+- inventarisatie over het maken van een kaart
+
+### Gepland:
+- de JSON's transformeren naar logische indeling voor de verschillende visualisaties
+- kleurfunctie voor kaart schrijven/vinden
+- kaart maken
+
+## To do:
+- missing data opvangen
+- min en max overal bepalen voor range van assen etc

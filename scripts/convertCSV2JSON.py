@@ -15,8 +15,8 @@ import json
 
 # open file to read from and file to write to
 # this still has to either loop over all csv's or 1 combined csv
-csvfile = open('Movies.csv', 'r')
-jsonfile = open('LOTR.json', 'w')
+csvfile = open('allextravariables.csv', 'r')
+jsonfile = open('allextravariables.json', 'w')
 
 # read csv data into dict
 read = csv.DictReader(csvfile)
@@ -30,3 +30,20 @@ jsonfile.write(output)
 # close files
 csvfile.close()
 jsonfile.close()
+
+
+csvfile2 = open('allfootprintdataadjusted.csv', 'r')
+jsonfile2 = open('footprintdetails.json', 'w')
+read2 = csv.DictReader(csvfile2)
+output2 = json.dumps([row for row in read2])
+jsonfile2.write(output2)
+csvfile2.close()
+jsonfile2.close()
+
+csvfile3 = open('globalisationindex.csv', 'r')
+jsonfile3 = open('globalisationindex.json', 'w')
+read3 = csv.DictReader(csvfile3)
+output3 = json.dumps([row for row in read3])
+jsonfile3.write(output3)
+csvfile3.close()
+jsonfile3.close()
