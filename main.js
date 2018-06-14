@@ -15,7 +15,14 @@ window.onload = function(){
     globind = response[1]
     footprint = response[2]
     readyData = dataTransform(extra, globind, footprint)
-    dataperyear = readyData[0]
-    datapercountry = readyData[1]
+    selectedYear = 1961
+    correctYearDict = selectedYear - 1961
+    console.log(readyData)
+    console.log(readyData[correctYearDict][selectedYear])
+    // dataperyear = readyData[0]
+    // datapercountry = readyData[1]
+    // mapMaker(readyData[correctYearDict][selectedYear])
+    mapMaker(readyData)
   }
+
 }

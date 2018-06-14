@@ -1,61 +1,12 @@
 // HEADER maken
 
-// year is nu een woord
-// functie van die value ipv alleen value voor de fillkey
-// nu is het een string en niet een object?
-
-function colorCode(value){
-  return value
-}
-
-function dataTransform(extradata, globindexdata, footprintdata){
-  // extradata = allextravariables.json
-  // footprintdata = footprintdetails.json
-  // globindexdata = globalisationindex.json
-
-  console.log(extradata)
-  console.log(footprintdata)
-  console.log(globindexdata)
-
-  mapdata= []
-  string = "{"
-  numberOfCountries = 127
-  // console.log(footprintdata.length)
-  for (year = 1961; year < 2016; year++){
-    currentYear = year
-    for (countryNumber = 0; countryNumber < numberOfCountries; countryNumber++) {
-      currentCountryCode = extradata[countryNumber]["Country Code"]
-      // console.log(currentCountryCode)
-      // console.log(year)
-      for (datapoint = 0; datapoint < footprintdata.length; datapoint++) {
-        unit = footprintdata[datapoint]
-        // console.log(unit)
-        // console.log(unit.countryCode)
-        if (unit.countryCode == currentCountryCode && unit.year == year) {
-          // console.log(unit.totalFootprint)
-          totalFootprint = unit.totalFootprint
-          break
-        }
-      }
-      string = string + currentCountryCode + " : {fillkey : " + colorCode(totalFootprint) + "}"
-      if (countryNumber < numberOfCountries - 1){
-        string = string + ", "
-      }
-      else {
-        string = string + "}"
-      }
-    }
-    yearDict = {year : string}
-    mapdata.push(yearDict)
-  }
-  console.log(mapdata)
-  // newmapdata = []
-  // for (i = 0; i < mapdata.length; i++){
-  //   console.log(mapdata[i])
-  //   newmapdata.push(JSON.parse( '"' + mapdata[i]) + '"')
-  // }
-  // console.log(newmapdata)
-  // mapdata = JSON.parse(mapdata)
+// newmapdata = []
+// for (i = 0; i < mapdata.length; i++){
+//   console.log(mapdata[i])
+//   newmapdata.push(JSON.parse( '"' + mapdata[i]) + '"')
+// }
+// console.log(newmapdata)
+// mapdata = JSON.parse(mapdata)
 // return [mapdata, scatterdata, linedata]
 
 // // convert to per year
@@ -104,7 +55,100 @@ function dataTransform(extradata, globindexdata, footprintdata){
 // // je wil dat je data.1960 aanroept en op basis daarvan de kaart kleurt?
 //
 //
-  dataperyear = 1
-  datapercountry = 2
-  return dataperyear,datapercountry
+// dataperyear = 1
+// datapercountry = 2
+
+
+function dataTransform(extradata, globindexdata, footprintdata){
+
+  // MAP PART
+
+  mapdata= []
+  scatterList = []
+
+  // allCountriesPerYear = {}
+  numberOfCountries = 127
+
+  for (year = 1961; year < 2015; year++){
+    allCountriesPerYear = {}
+
+
+    for (countryNumber = 0; countryNumber < numberOfCountries; countryNumber++) {
+      currentCountryCode = extradata[countryNumber]["Country Code"];
+      var totalFootprint;
+
+      for (datapoint = 0; datapoint < footprintdata.length; datapoint++) {
+        unit = footprintdata[datapoint];
+
+        if (unit.countryCode == currentCountryCode && unit.year == year) {
+          totalFootprint = unit.totalFootprint;
+          // console.log(colorCode(totalFootprint))
+          break;
+        };
+      };
+      allCountriesPerYear[currentCountryCode] = {"fillKey": colorCode(totalFootprint), "value": totalFootprint};
+    };
+    yearDict = {};
+    yearDict[year] = allCountriesPerYear;
+    mapdata.push(yearDict);
+  };
+  console.log(mapdata);
+
+
+  // SCATTER PART
+
+  // missing data!!
+
+for (year = 1961; year < 2015; year++) {
+  scatterYearDict = {}
+  scatterYearDict[year] = {}
+  currentDict = scatterYearDict
+
+  for (countryNumber = 0; countryNumber < numberOfCountries; countryNumber++) {
+    currentCountryCode = extradata[countryNumber]["Country Code"]
+    // console.log(currentCountryCode)
+
+    // console.log(scatterDict)
+
+    agriLand = extradata[countryNumber][year]
+    // console.log(agriLand)
+
+    assistance = extradata[countryNumber + numberOfCountries][year]
+    // console.log(assistance)
+
+    livestock = extradata[countryNumber + 2 * numberOfCountries][year]
+    // console.log(livestock)
+
+    population = extradata[countryNumber + 3 * numberOfCountries][year]
+    // console.log(livestock)
+
+    for (datapoint = 0; datapoint < footprintdata.length; datapoint++) {
+      unit = footprintdata[datapoint]
+
+      if (unit.countryCode == currentCountryCode && unit.year == year) {
+        totalFootprint = unit.totalFootprint
+        // console.log(colorCode(totalFootprint))
+        break
+      }
+    }
+  subDict = {"agriLand": agriLand,
+             "assistance": assistance,
+             "livestock": livestock,
+             "population": population,
+             "footprint": totalFootprint}
+  // console.log(scatterYearDict)
+  // console.log(scatterYearDict[year])
+  // console.log(year)
+  currentDict[currentCountryCode] = subDict
+  // console.log(scatterYearDict)
+
+  }
+  scatterList.push(scatterYearDict)
+  console.log(scatterList)
+}
+
+
+
+
+  return mapdata
   }
