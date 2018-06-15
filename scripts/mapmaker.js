@@ -10,8 +10,8 @@ function mapMaker(alldata) {
     projection: 'mercator',
     fills: {defaultFill: "#fff7fb",
             // hier eem functie schrijven voor de kleuren vullen
-            "muchos": "#ff0000",
-            "mwah": "#efefef"},
+            "mwah": "#0000ff",
+            "muchos": "#ff0000"},
     data: selectedData,
     geographyConfig: {borderColor: '#DEDEDE',
                       highlightBorderWidth: 2,
@@ -48,10 +48,10 @@ function colorCode(value) {
   // dan op basis daarvan percentages verdelen
   // ten opzichte van 1 doen?
   if (value < 0.9) {
-    return "muchos"
+    return "mwah"
   }
   else {
-    return "mwah"
+    return "muchos"
   }
 }
 
