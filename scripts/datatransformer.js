@@ -64,7 +64,7 @@ function dataTransform(extradata, globindexdata, footprintdata){
   // MAP PART
 
   mapdata= []
-  scatterList = []
+  scatterDictList = []
 
   // allCountriesPerYear = {}
   numberOfCountries = 127
@@ -105,6 +105,8 @@ for (year = 1961; year < 2015; year++) {
   currentDict = scatterYearDict
 
   for (countryNumber = 0; countryNumber < numberOfCountries; countryNumber++) {
+    globInd = null
+
     currentCountryCode = extradata[countryNumber]["Country Code"]
     // console.log(currentCountryCode)
 
@@ -131,10 +133,20 @@ for (year = 1961; year < 2015; year++) {
         break
       }
     }
+    for (datapoint = 0; datapoint < globindexdata.length; datapoint++) {
+      unit = globindexdata[datapoint]
+      // console.log(unit)
+      if (unit.countryCode == currentCountryCode && unit.year == year) {
+        globInd = unit.KOFGI
+        // console.log(globInd)
+        break
+      }
+    }
   subDict = {"agriLand": agriLand,
              "assistance": assistance,
              "livestock": livestock,
              "population": population,
+             "globInd": globInd,
              "footprint": totalFootprint}
   // console.log(scatterYearDict)
   // console.log(scatterYearDict[year])
@@ -143,12 +155,11 @@ for (year = 1961; year < 2015; year++) {
   // console.log(scatterYearDict)
 
   }
-  scatterList.push(scatterYearDict)
-  console.log(scatterList)
+  scatterDictList.push(scatterYearDict)
 }
+console.log(scatterDictList)
 
 
 
-
-  return mapdata
-  }
+  return [mapdata, scatterDictList]
+}

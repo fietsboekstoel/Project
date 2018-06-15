@@ -46,8 +46,9 @@ HTML file (containing necessary files, hyperlink to original data and buttons)
 
     <!-- javascript content files -->
     <script type="text/javascript" src="main.js"></script>
-    <script type="text/javascript" src="scripts/datatransformer.js" ></script>
-    <script type="text/javascript" src="scripts/mapMaker.js" ></script>
+    <script type="text/javascript" src="scripts/datatransformer.js"></script>
+    <script type="text/javascript" src="scripts/mapmaker.js"></script>
+    <script type="text/javascript" src="scripts/scattermaker.js"></script>
 
     <!-- files needed for use of bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
@@ -91,8 +92,7 @@ HTML file (containing necessary files, hyperlink to original data and buttons)
             <div class='label'>5+</div>
           </div>
         </div>
-        <div class="container" id="mapContainer" style="position: relative; width: 500px; height: 400px;">
-        </div>
+        <div class="container" id="mapContainer" style="position: relative; width: 500px; height: 400px;"></div>
       <!-- source of original dataset -->
       <!-- <a class="linkje" href="https://www.oecd-ilibrary.org/environment/data/oecd-environment-statistics/threatened-species_data-00605-en">Original dataset can be found here!</a> -->
       <!-- <div class="row">
@@ -119,6 +119,7 @@ HTML file (containing necessary files, hyperlink to original data and buttons)
         <h2>Year: <label id='active-hour'>1961</label></h2>
         <input id='slider' class='row' type='range' min='1961' max='2014' step='1' value='1961' />
       </div>
+      <div class="container" id="scatterContainer"style="position: relative; width: 500px; height: 400px;"></div>
     </div>
     <!-- <div class="slidecontainer"> -->
       <!-- <input type="range" min="1" max="100" value="50" class="slider" id="myRange"> -->

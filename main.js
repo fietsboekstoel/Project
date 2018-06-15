@@ -17,12 +17,13 @@ window.onload = function(){
     readyData = dataTransform(extra, globind, footprint)
     selectedYear = 1961
     correctYearDict = selectedYear - 1961
-    console.log(readyData)
-    console.log(readyData[correctYearDict][selectedYear])
-    // dataperyear = readyData[0]
-    // datapercountry = readyData[1]
+    // console.log(readyData)
+    // console.log(readyData[correctYearDict][selectedYear])
+    mapData = readyData[0]
+    scatterData = readyData[1]
     // mapMaker(readyData[correctYearDict][selectedYear])
-    mapMaker(readyData)
+    mapMaker(mapData);
+    scatterMaker(scatterData);
   }
 
 }
