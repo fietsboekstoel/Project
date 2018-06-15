@@ -1,3 +1,9 @@
+// missing data struggle
+// in theorie zijn er nu datapunten (want geen error) maar je ziet ze niet??
+// de assen en locatie svg kloppen nog niet
+// moet nog kunnen shiften tussen variabelen en dus op een handige plek aanroepen
+
+
 function scatterMaker(scatterData) {
   // // ensure both data sets are loaded before continuing
   // // d3.queue()
@@ -88,54 +94,96 @@ function scatterMaker(scatterData) {
   //
   // // draw actual graph
   // function makeGraph(selection){
+  console.log(scatterData)
+  var startYear = 1961;
+  // behalve de dicts ook nog ff een list of lists meegeven voor berekenen min en max
+  var scatterArrays = makeScatterArrays(scatterData, startYear)
+  drawScatter(scatterArrays, scatterData, "assistance", startYear);
+  // volgorde: agri, assist, livest, globind, pop, footprint, countrycode
 
-  startYear = 1961
-  makeScatterArrays(scatterData, startYear)
-  // behalve de dicts ook nog ff een list of lists meegeven
-}
+};
 
 function makeScatterArrays(scatterArrayData, year) {
   console.log(scatterArrayData)
-  startYear = 1961
-  numberOfYears = 2015-startYear
-  numberOfCountries = 127
-  agriList = []
-  assistList = []
-  livestockList = []
-  popuList = []
-  globIndList = []
-  footprintList = []
+  var startYear = 1961;
+  var numberOfYears = 2015-startYear;
+  var numberOfCountries = 127;
+  var agriList = [];
+  var assistList = [];
+  var livestockList = [];
+  var popuList = [];
+  var globIndList = [];
+  var footprintList = [];
   // countryList = []
 
-  rightYearDict = scatterArrayData[year - startYear]
+  var rightYearDict = scatterArrayData[year - startYear];
   console.log(rightYearDict)
+  console.log(rightYearDict)
+  rightYearDict = rightYearDict[year]
+  console.log(rightYearDict)
+  var countryNameList = Object.keys(rightYearDict);
 
-  for (countryNumber = 1; countryNumber < numberOfCountries + 1; countryNumber++) {
+  for (countryNumber = 0; countryNumber < numberOfCountries; countryNumber++) {
+
+    console.log(countryNameList)
+
     console.log("loop 1")
-    rightYearCountryDict = rightYearDict[1]
-    console.log(rightYearCountryDict)
+    console.log(rightYearDict)
+    // rightYearCountryDict = rightYearDict[1]
+    // console.log(rightYearDict)
+    console.log(countryNameList[countryNumber])
+
+    var rightYearCountryDict = rightYearDict[countryNameList[countryNumber]]
+    console.log(rightYearCountryDict);
 
     agriList.push(rightYearCountryDict["agriLand"]);
-    assistList.push(rightYearDict[countryNumber]["assistance"]);
-    livestockList.push(rightYearDict[countryNumber]["livestock"]);
-    popuList.push(rightYearDict[countryNumber]["population"]);
-    globIndList.push(rightYearDict[countryNumber]["globInd"]);
-    footprintList.push(rightYearDict[countryNumber]["footprint"]);
-    countryList = Object.keys(rightYearDict);
-    countryList = countryList.slice(1,)
-    console.log(countryList)
+    assistList.push(rightYearCountryDict["assistance"]);
+    livestockList.push(rightYearCountryDict["livestock"]);
+    popuList.push(rightYearCountryDict["population"]);
+    globIndList.push(rightYearCountryDict["globInd"]);
+    footprintList.push(rightYearCountryDict["footprint"]);
+
   };
 
-  scatterList = []
-  scatterList.push(agriList)
-  scatterList.push(assistList)
-  scatterList.push(livestockList)
-  scatterList.push(globIndList)
-  scatterList.push(popuList)
-  scatterList.push(footprintList)
+  var scatterList = [];
+  scatterList.push(agriList);
+  scatterList.push(assistList);
+  scatterList.push(livestockList);
+  scatterList.push(globIndList);
+  scatterList.push(popuList);
+  scatterList.push(footprintList);
+  scatterList.push(countryNameList)
 
   console.log(scatterList)
+  return scatterList;
 };
+
+function drawScatter(scatterArrays, scatterData, selection, year) {
+
+  // determine highest and lowest value of x and y variables for scaling
+
+  // NU WORDT "" EN null MEEGENOMEN ALS 0
+
+  var minValueAgri = Math.min.apply(Math, scatterArrays[0])
+  var maxValueAgri = Math.max.apply(Math, scatterArrays[0])
+
+  var minValueAssist = Math.min.apply(Math, scatterArrays[1])
+  var maxValueAssist = Math.max.apply(Math, scatterArrays[1])
+
+  var minValueLivestock = Math.min.apply(Math, scatterArrays[2])
+  var maxValueLivestock = Math.max.apply(Math, scatterArrays[2])
+
+  var minValueGlobind = Math.min.apply(Math, scatterArrays[3])
+  var maxValueGlobind = Math.max.apply(Math, scatterArrays[3])
+
+  var minValuePopulation = Math.min.apply(Math, scatterArrays[4])
+  var maxValuePopulation = Math.max.apply(Math, scatterArrays[4])
+
+  var minValueFootprint = Math.min.apply(Math, scatterArrays[5])
+  var maxValueFootprint = Math.max.apply(Math, scatterArrays[5]) + 0.5
+
+  console.log(minValueAgri, minValueAssist, minValueLivestock, minValueGlobind, minValuePopulation, minValueFootprint)
+  console.log(maxValueAgri, maxValueAssist, maxValueLivestock, maxValueGlobind, maxValuePopulation, maxValueFootprint)
 
    //
    //  // add graph title depending on data (birds/mammals)
@@ -152,81 +200,69 @@ function makeScatterArrays(scatterArrayData, year) {
    //      return title
    //    });
    //
-   //  // divide array of combined variables into seperate arrays per variable
-   //  var arrayTotalBirds = arrayBirds.slice(0,10)
-   //  var arrayThreatBirds = arrayBirds.slice(10,20)
-   //  var arrayPercentageBirds = arrayBirds.slice(20,)
    //
-   //  var arrayTotalMammals = arrayMammals.slice(0,10)
-   //  var arrayThreatMammals = arrayMammals.slice(10,20)
-   //  var arrayPercentageMammals = arrayMammals.slice(20,)
-   //
-   //  // determine highest and lowest value of x and y variables for scaling
-   //  var minValueTotalBirds = Math.min.apply(Math, arrayTotalBirds) - 15
-   //  var maxValueTotalBirds = Math.max.apply(Math, arrayTotalBirds) + 15
-   //
-   //  var minValueThreatBirds = Math.min.apply(Math, arrayThreatBirds) - 15
-   //  var maxValueThreatBirds = Math.max.apply(Math, arrayThreatBirds) + 15
-   //
-   //  var minValueTotalMammals = Math.min.apply(Math, arrayTotalMammals) - 15
-   //  var maxValueTotalMammals = Math.max.apply(Math, arrayTotalMammals) + 15
-   //
-   //  var minValueThreatMammals = Math.min.apply(Math, arrayThreatMammals)
-   //  var maxValueThreatMammals = Math.max.apply(Math, arrayThreatMammals) + 15
-   //
-   //  // consider size of svg and margin to place axis labels in within svg
-   //  var totalWidth = 1070;
-   //  var totalHeight = 700;
-   //  var margin = {left: 100, top: 10, right: 200, bottom: 150};
-   //
-   //  // define variables for width and height of graph (rather than the svg)
-   //  var graphWidth = totalWidth - margin.left - margin.right;
-   //  var graphHeight = totalHeight - margin.top - margin.bottom;
-   //
-   //  // create svg to draw on
-   //  var svg = d3.select("body")
-   //              .append("svg")
-   //              .attr("class", "graph")
-   //              .attr("width", totalWidth)
-   //              .attr("height", totalHeight)
-   //              .append("g")
-   //              .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-   //
-   //  // use the right minimal and maximal value based on data (birds/mammals)
-   //  var yDomainSelection, xDomainSelection;
-   //  if (selection == "Birds"){
-   //    yDomainSelection = [maxValueThreatBirds, minValueThreatBirds]
-   //    xDomainSelection = [minValueTotalBirds, maxValueTotalBirds]
-   //  }
-   //  else {
-   //    yDomainSelection = [maxValueThreatMammals, minValueThreatMammals]
-   //    xDomainSelection = [minValueTotalMammals, maxValueTotalMammals]
-   //  }
-   //
-   //  // functions for scaling x and y values from data to graph area
-   //  var yScale = d3.scale.linear()
-   //                       .domain(yDomainSelection)
-   //                       .range([margin.top, totalHeight - margin.bottom]);
-   //
-   //  var xScale = d3.scale.linear()
-   //                       .domain(xDomainSelection)
-   //                       .range([0, graphWidth])
-   //
-   // // create and draw y and x axis
-   // var yAxis = d3.svg.axis()
-   //                   .scale(yScale)
-   //                   .orient("left");
-   // svg.append("g")
-   //    .attr("class", "axis")
-   //    .call(yAxis);
-   //
-   // var xAxis = d3.svg.axis()
-   //                   .scale(xScale)
-   //                   .orient("bottom");
-   // svg.append("g")
-   //    .attr("class", "axis")
-   //    .attr("transform", "translate(0," + (graphHeight + margin.top) + ")")
-   //    .call(xAxis)
+    // consider size of svg and margin to place axis labels in within svg
+    var totalScatterWidth = 700;
+    var totalScatterHeight = 500;
+    var scatterMargin = {left: 50, top: 10, right: 50, bottom: 100};
+
+    // define variables for width and height of graph (rather than the svg)
+    var scatterWidth = totalScatterWidth - scatterMargin.left - scatterMargin.right;
+    var scatterHeight = totalScatterHeight - scatterMargin.top - scatterMargin.bottom;
+
+    // create svg to draw on
+    var svg = d3.select("body")
+                .append("svg")
+                .attr("class", "graph")
+                .attr("width", totalScatterWidth)
+                .attr("height", totalScatterHeight)
+                .append("g")
+                .attr("transform", "translate(" + scatterMargin.left + "," + scatterMargin.top + ")");
+
+    // use the right minimal and maximal value based on data (birds/mammals)
+    var yDomainSelection;
+    var xDomainSelection = [minValueFootprint, maxValueFootprint];
+
+    if (selection == "agriLand"){
+      yDomainSelection = [maxValueAgri, minValueAgri]
+    }
+    else if (selection == "livestock") {
+      yDomainSelection = [maxValueAssist, minValueAssist]
+    }
+    else if (selection == "globInd") {
+      yDomainSelection = [maxValueGlobind, minValueGlobind]
+    }
+    else if (selection == "population") {
+      yDomainSelection = [maxValuePopulation, minValuePopulation]
+    }
+    else {
+      yDomainSelection = [maxValueAssist, minValueAssist]
+    };
+
+    // functions for scaling x and y values from data to graph area
+    var yScale = d3.scale.linear()
+                         .domain(yDomainSelection)
+                         .range([scatterMargin.top, totalScatterHeight - scatterMargin.bottom]);
+
+    var xScale = d3.scale.linear()
+                         .domain(xDomainSelection)
+                         .range([0, scatterWidth])
+
+    // create and draw y and x axis
+    var yAxis = d3.svg.axis()
+                      .scale(yScale)
+                      .orient("left");
+    svg.append("g")
+       .attr("class", "axis")
+       .call(yAxis);
+
+    var xAxis = d3.svg.axis()
+                      .scale(xScale)
+                      .orient("bottom");
+    svg.append("g")
+       .attr("class", "axis")
+       .attr("transform", "translate(0," + (scatterHeight + scatterMargin.top) + ")")
+       .call(xAxis)
    //
    //  // create and call tooltip to appear when hovering on data point
    //  var tooltip = d3.tip()
@@ -241,34 +277,35 @@ function makeScatterArrays(scatterArrayData, year) {
    //                  });
    //  svg.call(tooltip);
    //
-   //  // draw dots/data points of scatter plot based on data (birds/mammals)
-   //  svg.selectAll("circle")
-   //     .data(dictArray)
-   //     .enter()
-   //     .append("circle")
-   //
-   //     // add class of data point for color based on 3rd variable of percentage
-   //     .attr("class", function(d) {
-   //       if (d["percentage" + selection] >= 30) {
-   //         return "high"
-   //       }
-   //       else if (d["percentage" + selection] >= 20 && d["percentage" + selection] < 30) {
-   //         return "medium"
-   //       }
-   //       else {
-   //         return "low"
-   //       }
-   //     })
-   //     .attr("cx", function(d) {
-   //        return xScale(d["totalSpecies" + selection]);
-   //      })
-   //     .attr("cy", function(d) {
-   //        return yScale(d["threatenedSpecies" + selection]);
-   //      })
-   //     .attr("r", 7)
-   //     .on('mouseover', tooltip.show)
-   //     .on('mouseout', tooltip.hide);
-   //
+   console.log(scatterData[year-1961][year])
+    // draw dots/data points of scatter plot based on data (birds/mammals)
+    svg.selectAll("circle")
+       .data(scatterData[year-1961][year])
+       .enter()
+       .append("circle")
+
+       // // add class of data point for color based on 3rd variable of percentage
+       // .attr("class", function(d) {
+       //   if (d["percentage" + selection] >= 30) {
+       //     return "high"
+       //   }
+       //   else if (d["percentage" + selection] >= 20 && d["percentage" + selection] < 30) {
+       //     return "medium"
+       //   }
+       //   else {
+       //     return "low"
+       //   }
+       // })
+       .attr("cx", function(d) {
+          return xScale(d["footprint"]);
+        })
+       .attr("cy", function(d) {
+          return yScale(d["assistance"]);
+        })
+       .attr("r", 7);
+       // .on('mouseover', tooltip.show)
+       // .on('mouseout', tooltip.hide);
+
    //  // add y-axis label
    //  svg.append("text")
    //     .attr("class", "axisLabel")
@@ -365,4 +402,4 @@ function makeScatterArrays(scatterArrayData, year) {
    //     makeGraph("Birds");
    //   };
 
-  // };
+  };

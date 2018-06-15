@@ -3,8 +3,8 @@
 // elk jaar heeft nu dezelfde data footprint
 
 function mapMaker(alldata) {
-  startYear = 1961
-  selectedData = alldata[0][startYear]
+  startYear = 1961;
+  selectedData = alldata[0][startYear];
     var basic_choropleth = new Datamap({
     element: document.getElementById("mapContainer"),
     projection: 'mercator',
@@ -23,15 +23,15 @@ function mapMaker(alldata) {
                       highlightBorderColor: '#B7B7B7'}
 
     });
-    console.log(basic_choropleth)
-    sliderUpdate(basic_choropleth, alldata)
-}
+    // console.log(basic_choropleth)
+    sliderUpdate(basic_choropleth, alldata);
+};
 
 function sliderUpdate(existingMap, alldata) {
   document.getElementById("slider").addEventListener('input', function(e) {
     var requestedYear = parseInt(e.target.value);
     // update the map
-    updateMap(existingMap, requestedYear, alldata)
+    updateMap(existingMap, requestedYear, alldata);
 
     // // converting 0-23 hour to AMPM format
     // var ampm = hour >= 12 ? 'PM' : 'AM';
@@ -40,7 +40,7 @@ function sliderUpdate(existingMap, alldata) {
     // update text in the UI
     document.getElementById('active-hour').innerText = requestedYear;
     });
-}
+};
 
 
 function colorCode(value) {
@@ -48,24 +48,24 @@ function colorCode(value) {
   // dan op basis daarvan percentages verdelen
   // ten opzichte van 1 doen?
   if (value < 0.9) {
-    return "mwah"
+    return "mwah";
   }
   else {
-    return "muchos"
-  }
-}
+    return "muchos";
+  };
+};
 
 function updateMap(existingMap, requestedYear, alldata) {
   // console.log(requestedYear)
   // console.log(alldata)
   // update color fill of countries based on data selection
-  correctYearDict = requestedYear - 1961
+  correctYearDict = requestedYear - 1961;
 
 
   // console.log(existingMap.data)
   // existingMap.data = alldata[correctYearDict][requestedYear]
   // console.log(existingMap.data)
-  existingMap.updateChoropleth(alldata[correctYearDict][requestedYear])
+  existingMap.updateChoropleth(alldata[correctYearDict][requestedYear]);
 
   // allPaths = d3.selectAll("path")
   //   .style("fill", function(d) {
@@ -93,5 +93,5 @@ function updateMap(existingMap, requestedYear, alldata) {
     // })
   // console.log(allPaths)
 
-  return
-}
+  return;
+};

@@ -58,3 +58,11 @@
   display: inline-block;
   text-align: center;
 }
+
+
+.axis path,
+.axis line {
+  fill : none;
+  stroke : black;
+  shape-rendering : crispEdges;
+}
