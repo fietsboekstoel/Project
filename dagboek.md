@@ -44,6 +44,20 @@
 - kleurfunctie voor kaart schrijven/vinden
 - kaart maken
 
+## 13/14/15 juni 2018: (13 vergeten te pushen, 14 ook vergeten te pushen door de hackathon)
+### Gedaan:
+- JSON's gebruikt om de juiste data te isoleren voor de map
+- Kaart gemaakt
+- Slider gemaakt en aan kaart gekoppeld
+- JSON's gebruikt om de juiste data te isoleren voor de scatterplot
+- eindje gekomen met de scatterplot
+
+### Gepland:
+- scatterplot afmaken
+- knoppen maken om verschillende variabelen op de y-as te kunnen laten zien
+- knoppen koppelen aan update functie van scatterplot
+
 ## To do:
 - missing data opvangen
-- min en max overal bepalen voor range van assen etc
+- min en max overal bepalen voor range van assen etc (rekening houden met missing data die meegenomen wordt als "0")
+- update functie voor scatterplot op een handige plek
