@@ -6,9 +6,9 @@ function mapMaker(alldata) {
   startYear = 1961;
   selectedData = alldata[0][startYear];
     var basic_choropleth = new Datamap({
-    element: document.getElementById("mapContainer"),
+    element: document.getElementById("mapHere"),
     projection: 'mercator',
-    fills: {defaultFill: "#fff7fb",
+    fills: {defaultFill: "#efefef",
             // hier eem functie schrijven voor de kleuren vullen
             "mwah": "#0000ff",
             "muchos": "#ff0000"},
@@ -47,6 +47,11 @@ function colorCode(value) {
   // min en max nodig?
   // dan op basis daarvan percentages verdelen
   // ten opzichte van 1 doen?
+  // var color = d3.scale.linear()
+  //               .domain([1,4.5])
+  //               .interpolate(d3.interpolateHcl)
+  //               .range(["#67001f", "#b2182b", "#d6604d", "#f4a582", "#fddbc7", "#f7f7f7", "#d1e5f0", "#92c5de", "#4393c3", "#2166ac", "#053061"]);
+  //
   if (value < 0.9) {
     return "mwah";
   }

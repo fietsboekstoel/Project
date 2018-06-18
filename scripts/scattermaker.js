@@ -1,7 +1,8 @@
 // missing data struggle
-// in theorie zijn er nu datapunten (want geen error) maar je ziet ze niet??
 // de assen en locatie svg kloppen nog niet
 // moet nog kunnen shiften tussen variabelen en dus op een handige plek aanroepen
+// assistance negatieve getallen
+// tooltip
 
 
 function scatterMaker(scatterData) {
@@ -98,7 +99,7 @@ function scatterMaker(scatterData) {
   var startYear = 1961;
   // behalve de dicts ook nog ff een list of lists meegeven voor berekenen min en max
   var scatterArrays = makeScatterArrays(scatterData, startYear)
-  drawScatter(scatterArrays, scatterData, "assistance", startYear);
+  drawScatter(scatterArrays, scatterData, "agriLand", startYear);
   // volgorde: agri, assist, livest, globind, pop, footprint, countrycode
 
 };
@@ -159,6 +160,7 @@ function makeScatterArrays(scatterArrayData, year) {
 };
 
 function drawScatter(scatterArrays, scatterData, selection, year) {
+  console.log(scatterArrays, scatterData, selection, year)
 
   // determine highest and lowest value of x and y variables for scaling
 
@@ -202,22 +204,24 @@ function drawScatter(scatterArrays, scatterData, selection, year) {
    //
    //
     // consider size of svg and margin to place axis labels in within svg
-    var totalScatterWidth = 700;
+    var totalScatterWidth = d3.select("#scatterHere")[0][0].clientWidth;
+    console.log(totalScatterWidth)
     var totalScatterHeight = 500;
-    var scatterMargin = {left: 50, top: 10, right: 50, bottom: 100};
+    var scatterMargin = {left: 100, top: 10, right: 50, bottom: 100};
 
     // define variables for width and height of graph (rather than the svg)
     var scatterWidth = totalScatterWidth - scatterMargin.left - scatterMargin.right;
     var scatterHeight = totalScatterHeight - scatterMargin.top - scatterMargin.bottom;
 
     // create svg to draw on
-    var svg = d3.select("body")
+    var svg = d3.select("#scatterLocation")
                 .append("svg")
                 .attr("class", "graph")
                 .attr("width", totalScatterWidth)
                 .attr("height", totalScatterHeight)
                 .append("g")
                 .attr("transform", "translate(" + scatterMargin.left + "," + scatterMargin.top + ")");
+
 
     // use the right minimal and maximal value based on data (birds/mammals)
     var yDomainSelection;
@@ -264,47 +268,33 @@ function drawScatter(scatterArrays, scatterData, selection, year) {
        .attr("transform", "translate(0," + (scatterHeight + scatterMargin.top) + ")")
        .call(xAxis)
    //
-   //  // create and call tooltip to appear when hovering on data point
-   //  var tooltip = d3.tip()
-   //                  .attr('class', 'tooltip')
-   //                  .html(function(d) {
-   //                    var tooltipText = "<strong>Country: </strong><span>" + d.country + "</span>" + "<br>",
-   //                    tooltipThreat = "<strong>Number of threatened species: </strong><span>" + d["threatenedSpecies" + selection] + "</span>" + "<br>",
-   //                    tooltipTotal = "<strong>Total number of species: </strong><span>" + d["totalSpecies" + selection] + "</span>" + "<br>",
-   //                    tooltipPerc = "<strong>Percentage threatened species: </strong><span>" + d["percentage" + selection] + "%</span>" + "<br>"
-   //
-   //                    return tooltipText + tooltipThreat + tooltipTotal + tooltipPerc
-   //                  });
-   //  svg.call(tooltip);
+    // create and call tooltip to appear when hovering on data point
+    var tooltip = d3.tip()
+                    .attr('class', 'tooltip')
+                    .html(function(d) {
+                      var tooltipText = "<strong>Country: </strong><span>" + scatterData[year-1961][year][d].countryName + "</span>" + "<br>";
+
+                      return tooltipText;
+                    });
+    svg.call(tooltip);
    //
    console.log(scatterData[year-1961][year])
     // draw dots/data points of scatter plot based on data (birds/mammals)
     svg.selectAll("circle")
-       .data(scatterData[year-1961][year])
+       .data(Object.keys(scatterData[year-1961][year]))
        .enter()
        .append("circle")
-
-       // // add class of data point for color based on 3rd variable of percentage
-       // .attr("class", function(d) {
-       //   if (d["percentage" + selection] >= 30) {
-       //     return "high"
-       //   }
-       //   else if (d["percentage" + selection] >= 20 && d["percentage" + selection] < 30) {
-       //     return "medium"
-       //   }
-       //   else {
-       //     return "low"
-       //   }
-       // })
        .attr("cx", function(d) {
-          return xScale(d["footprint"]);
+         var xCor = scatterData[year-1961][year][d]["footprint"];
+          return xScale(xCor);
         })
        .attr("cy", function(d) {
-          return yScale(d["assistance"]);
+         var yCor = scatterData[year-1961][year][d][selection];
+          return yScale(yCor);
         })
-       .attr("r", 7);
-       // .on('mouseover', tooltip.show)
-       // .on('mouseout', tooltip.hide);
+       .attr("r", 4)
+       .on('mouseover', tooltip.show)
+       .on('mouseout', tooltip.hide);
 
    //  // add y-axis label
    //  svg.append("text")

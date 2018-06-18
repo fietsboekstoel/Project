@@ -71,6 +71,7 @@ for (year = 1961; year < 2015; year++) {
 
       if (unit.countryCode == currentCountryCode && unit.year == year) {
         totalFootprint = unit.totalFootprint;
+        countryName = unit.countryName;
         // console.log(colorCode(totalFootprint))
         break;
       };
@@ -89,7 +90,8 @@ for (year = 1961; year < 2015; year++) {
                "livestock": livestock,
                "population": population,
                "globInd": globInd,
-               "footprint": totalFootprint};
+               "footprint": totalFootprint,
+               "countryName": countryName};
     // console.log(scatterYearDict)
     // console.log(scatterYearDict[year])
     // console.log(year)

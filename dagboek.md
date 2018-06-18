@@ -57,7 +57,20 @@
 - knoppen maken om verschillende variabelen op de y-as te kunnen laten zien
 - knoppen koppelen aan update functie van scatterplot
 
+## 18 juni 2018:
+### Gedaan:
+- Eerste versie basis scatter af
+- gewerkt aan indeling pagina
+- inventarisatie gedaan voor stacked area graph voor planning
+
+### Gepland:
+- update functie scatterplot
+- knoppen koppelen aan update
+
 ## To do:
-- missing data opvangen
-- min en max overal bepalen voor range van assen etc (rekening houden met missing data die meegenomen wordt als "0")
+- missing data opvangen (wat gebeurt er met "null")
 - update functie voor scatterplot op een handige plek
+- logaritmische y-as waar nodig?
+- kleuren functie voor map
+- legenda voor map
+- tooltip aanvullen (map en scatter)

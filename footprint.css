@@ -66,3 +66,19 @@
   stroke : black;
   shape-rendering : crispEdges;
 }
+
+.tooltip {
+  position: absolute;
+  width: 280px;
+  height: 85px;
+  padding: 2px;
+  font: 14px;
+  background: violet;
+  border: 0px;
+  border-radius: 8px;
+  pointer-events: none;
+}
+
+#mapHere {
+   height: 100%
+}
