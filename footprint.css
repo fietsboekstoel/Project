@@ -79,6 +79,6 @@
   pointer-events: none;
 }
 
-#mapHere {
-   height: 100%
+#mapHere svg {
+   height: 400px;
 }

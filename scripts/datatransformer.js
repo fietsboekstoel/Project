@@ -102,7 +102,7 @@ for (year = 1961; year < 2015; year++) {
     // console.log(scatterDictList);
   };
   scatterPerYearDict = {};
-  console.log(year)
+  // console.log(year)
   scatterPerYearDict[year] = scatterYearDict;
   scatterDictList.push(scatterPerYearDict);
 

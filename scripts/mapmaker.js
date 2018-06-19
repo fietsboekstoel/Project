@@ -1,17 +1,21 @@
-// update obv Slider
+// titel
 // legenda
-// elk jaar heeft nu dezelfde data footprint
+// colorfunction verbeteren
+// update werkt nog niet
+// highlight kleur dezelfde kleur?
+// tooltip aanvullen
 
 function mapMaker(alldata) {
   startYear = 1961;
   selectedData = alldata[0][startYear];
+  // keyArray = Object.keys(selectedData)
     var basic_choropleth = new Datamap({
     element: document.getElementById("mapHere"),
-    projection: 'mercator',
-    fills: {defaultFill: "#efefef",
-            // hier eem functie schrijven voor de kleuren vullen
-            "mwah": "#0000ff",
-            "muchos": "#ff0000"},
+    projection: "mercator",
+    fills: {defaultFill: "#efefef"},
+            // fillColor: function(d) {
+            //   return colorCode(d)
+            // }},
     data: selectedData,
     geographyConfig: {borderColor: '#DEDEDE',
                       highlightBorderWidth: 2,
@@ -21,8 +25,22 @@ function mapMaker(alldata) {
                       },
                       // only change border
                       highlightBorderColor: '#B7B7B7'}
-
     });
+    d3.selectAll("path")
+      .style("fill", function(d) {
+        console.log(d.id)
+        countryCode = d.id;
+        console.log(selectedData[countryCode])
+        if (selectedData[countryCode]) {
+          countryDict = selectedData[countryCode]
+          return selectedData[countryCode].fillKey;
+        }
+        else {
+          return "#efefef"
+        }
+        console.log(countryDict.fillKey)
+
+      });
     // console.log(basic_choropleth)
     sliderUpdate(basic_choropleth, alldata);
 };
@@ -30,6 +48,7 @@ function mapMaker(alldata) {
 function sliderUpdate(existingMap, alldata) {
   document.getElementById("slider").addEventListener('input', function(e) {
     var requestedYear = parseInt(e.target.value);
+    console.log("map year update?")
     // update the map
     updateMap(existingMap, requestedYear, alldata);
 
@@ -38,7 +57,7 @@ function sliderUpdate(existingMap, alldata) {
     // var hour12 = hour % 12 ? hour % 12 : 12;
 
     // update text in the UI
-    document.getElementById('active-hour').innerText = requestedYear;
+    document.getElementById('activeYear').innerText = requestedYear;
     });
 };
 
@@ -46,18 +65,21 @@ function sliderUpdate(existingMap, alldata) {
 function colorCode(value) {
   // min en max nodig?
   // dan op basis daarvan percentages verdelen
-  // ten opzichte van 1 doen?
-  // var color = d3.scale.linear()
-  //               .domain([1,4.5])
-  //               .interpolate(d3.interpolateHcl)
-  //               .range(["#67001f", "#b2182b", "#d6604d", "#f4a582", "#fddbc7", "#f7f7f7", "#d1e5f0", "#92c5de", "#4393c3", "#2166ac", "#053061"]);
-  //
-  if (value < 0.9) {
-    return "mwah";
-  }
-  else {
-    return "muchos";
-  };
+  var colorScale = d3.scale.linear()
+                           .domain([0, 1, 11])
+                           .range(["green", "white", "red"]);
+
+  // console.log(color(value))
+
+  var colorValue = colorScale(value);
+  return colorValue;
+
+  // if (value < 0.9) {
+  //   return "mwah";
+  // }
+  // else {
+  //   return "muchos";
+  // };
 };
 
 function updateMap(existingMap, requestedYear, alldata) {

@@ -1,4 +1,5 @@
 // HEADER MAKEN
+var currentYear;
 
 window.onload = function(){
 
@@ -11,19 +12,20 @@ window.onload = function(){
 
   function transformData(error, response){
     if (error) throw error;
-    extra = response[0];
-    globind = response[1];
-    footprint = response[2];
-    readyData = dataTransform(extra, globind, footprint);
-    selectedYear = 1961;
-    correctYearDict = selectedYear - 1961;
+    var extra = response[0];
+    var globind = response[1];
+    var footprint = response[2];
+    var readyData = dataTransform(extra, globind, footprint);
+    currentYear = 1961;
+    var correctYearDict = currentYear - 1961;
     // console.log(readyData)
     // console.log(readyData[correctYearDict][selectedYear])
-    mapData = readyData[0];
-    scatterData = readyData[1];
+    var mapData = readyData[0];
+    var scatterData = readyData[1];
     // mapMaker(readyData[correctYearDict][selectedYear])
     mapMaker(mapData);
     scatterMaker(scatterData);
+    areaMaker();
   };
 
 };

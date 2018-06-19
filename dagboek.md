@@ -67,10 +67,21 @@
 - update functie scatterplot
 - knoppen koppelen aan update
 
+## 19 juni 2018:
+### Gedaan:
+- Map colorCode
+- Dropdown voor y-as variabelen vd scatter
+- update scatter (en map) bijna helemaal werkend
+- lay-out van de pagina iets verbeterd
+
+### Gepland:
+- waar voeg ik die colorCode toe in het aanmaken van de map?
+- update helemaal werkend krijgen
+- verder aan area/line graph
+- kleurenfunctie verbeteren
+
 ## To do:
 - missing data opvangen (wat gebeurt er met "null")
-- update functie voor scatterplot op een handige plek
-- logaritmische y-as waar nodig?
-- kleuren functie voor map
+- logaritmische y-as voor scatter waar nodig?
 - legenda voor map
-- tooltip aanvullen (map en scatter)
+- tooltips aanvullen (map en scatter)
