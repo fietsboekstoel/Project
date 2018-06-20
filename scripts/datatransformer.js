@@ -27,7 +27,7 @@ function dataTransform(extradata, globindexdata, footprintdata){
           break;
         };
       };
-      allCountriesPerYear[currentCountryCode] = {"fillKey": colorCode(totalFootprint), "value": totalFootprint};
+      allCountriesPerYear[currentCountryCode] = {"fillColor": colorCode(totalFootprint), "value": totalFootprint};
     };
     yearDict = {};
     yearDict[year] = allCountriesPerYear;
@@ -72,6 +72,7 @@ for (year = 1961; year < 2015; year++) {
       if (unit.countryCode == currentCountryCode && unit.year == year) {
         totalFootprint = unit.totalFootprint;
         countryName = unit.countryName;
+        countryCode = unit.countryCode;
         // console.log(colorCode(totalFootprint))
         break;
       };
@@ -91,7 +92,8 @@ for (year = 1961; year < 2015; year++) {
                "population": population,
                "globInd": globInd,
                "footprint": totalFootprint,
-               "countryName": countryName};
+               "countryName": countryName,
+               "countryCode": countryCode};
     // console.log(scatterYearDict)
     // console.log(scatterYearDict[year])
     // console.log(year)

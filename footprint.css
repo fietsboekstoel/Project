@@ -82,3 +82,7 @@
 #mapHere svg {
    height: 400px;
 }
+
+.dot:hover {
+  fill: blue;
+}

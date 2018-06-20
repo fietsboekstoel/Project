@@ -106,7 +106,7 @@ function scatterMaker(totalScatterData) {
   // var startYear = 1961;
   // behalve de dicts ook nog ff een list of lists meegeven voor berekenen min en max
   currentSelection = "agriLand"
-  scatterArrays = makeScatterArrays(scatterData, startYear);
+  // scatterArrays = makeScatterArrays(scatterData, startYear);
   currentYear = startYear;
   drawScatter(scatterArrays, scatterData, currentSelection, currentYear);
   // volgorde: agri, assist, livest, globind, pop, footprint, countrycode
@@ -116,62 +116,62 @@ function scatterMaker(totalScatterData) {
 
 
 
-
-
-function makeScatterArrays(scatterArrayData, year) {
-  // console.log(scatterArrayData)
-  // var startYear = 1961;
-  var numberOfYears = 2015-startYear;
-  var numberOfCountries = 127;
-  var agriList = [];
-  var assistList = [];
-  var livestockList = [];
-  var popuList = [];
-  var globIndList = [];
-  var footprintList = [];
-  // countryList = []
-
-  var rightYearDict = scatterArrayData[year - startYear];
-  // console.log(rightYearDict)
-  // console.log(rightYearDict)
-  rightYearDict = rightYearDict[year]
-  // console.log(rightYearDict)
-  var countryNameList = Object.keys(rightYearDict);
-
-  for (countryNumber = 0; countryNumber < numberOfCountries; countryNumber++) {
-
-    // console.log(countryNameList)
-
-    // console.log("loop 1")
-    // console.log(rightYearDict)
-    // rightYearCountryDict = rightYearDict[1]
-    // console.log(rightYearDict)
-    // console.log(countryNameList[countryNumber])
-
-    var rightYearCountryDict = rightYearDict[countryNameList[countryNumber]]
-    // console.log(rightYearCountryDict);
-
-    agriList.push(rightYearCountryDict["agriLand"]);
-    assistList.push(rightYearCountryDict["assistance"]);
-    livestockList.push(rightYearCountryDict["livestock"]);
-    popuList.push(rightYearCountryDict["population"]);
-    globIndList.push(rightYearCountryDict["globInd"]);
-    footprintList.push(rightYearCountryDict["footprint"]);
-
-  };
-
-  var scatterList = [];
-  scatterList.push(agriList);
-  scatterList.push(assistList);
-  scatterList.push(livestockList);
-  scatterList.push(globIndList);
-  scatterList.push(popuList);
-  scatterList.push(footprintList);
-  scatterList.push(countryNameList)
-
-  console.log(scatterList)
-  return scatterList;
-};
+//
+//
+// function makeScatterArrays(scatterArrayData, year) {
+//   // console.log(scatterArrayData)
+//   // var startYear = 1961;
+//   var numberOfYears = 2015-startYear;
+//   var numberOfCountries = 127;
+//   var agriList = [];
+//   var assistList = [];
+//   var livestockList = [];
+//   var popuList = [];
+//   var globIndList = [];
+//   var footprintList = [];
+//   // countryList = []
+//
+//   var rightYearDict = scatterArrayData[year - startYear];
+//   // console.log(rightYearDict)
+//   // console.log(rightYearDict)
+//   rightYearDict = rightYearDict[year]
+//   // console.log(rightYearDict)
+//   var countryNameList = Object.keys(rightYearDict);
+//
+//   for (countryNumber = 0; countryNumber < numberOfCountries; countryNumber++) {
+//
+//     // console.log(countryNameList)
+//
+//     // console.log("loop 1")
+//     // console.log(rightYearDict)
+//     // rightYearCountryDict = rightYearDict[1]
+//     // console.log(rightYearDict)
+//     // console.log(countryNameList[countryNumber])
+//
+//     var rightYearCountryDict = rightYearDict[countryNameList[countryNumber]]
+//     // console.log(rightYearCountryDict);
+//
+//     agriList.push(rightYearCountryDict["agriLand"]);
+//     assistList.push(rightYearCountryDict["assistance"]);
+//     livestockList.push(rightYearCountryDict["livestock"]);
+//     popuList.push(rightYearCountryDict["population"]);
+//     globIndList.push(rightYearCountryDict["globInd"]);
+//     footprintList.push(rightYearCountryDict["footprint"]);
+//
+//   };
+//
+//   var scatterList = [];
+//   scatterList.push(agriList);
+//   scatterList.push(assistList);
+//   scatterList.push(livestockList);
+//   scatterList.push(globIndList);
+//   scatterList.push(popuList);
+//   scatterList.push(footprintList);
+//   scatterList.push(countryNameList)
+//
+//   console.log(scatterList)
+//   return scatterList;
+// };
 
 
 
@@ -204,7 +204,7 @@ function drawScatter(scatterArrays, scatterData, selection, year) {
     var totalScatterWidth = d3.select("#scatterHere")[0][0].clientWidth;
     // console.log(totalScatterWidth)
     var totalScatterHeight = 500;
-    var scatterMargin = {left: 100, top: 10, right: 50, bottom: 100};
+    var scatterMargin = {left: 150, top: 10, right: 50, bottom: 100};
 
     // define variables for width and height of graph (rather than the svg)
     var scatterWidth = totalScatterWidth - scatterMargin.left - scatterMargin.right;
@@ -265,6 +265,10 @@ function drawScatter(scatterArrays, scatterData, selection, year) {
        .data(Object.keys(scatterData[year-1961][year]))
        .enter()
        .append("circle")
+       .attr("class", "dot")
+       .attr("id", function(d) {
+         return scatterData[year-1961][year][d]["countryCode"]
+       })
        .attr("cx", function(d) {
          var xCor = scatterData[year-1961][year][d]["footprint"];
           return xScale(xCor);
@@ -275,7 +279,9 @@ function drawScatter(scatterArrays, scatterData, selection, year) {
         })
        .attr("r", 4)
        .on('mouseover', tooltip.show)
-       .on('mouseout', tooltip.hide);
+       .on('mouseout', tooltip.hide)
+       .on('click', function() {areaUpdate(this.id)});
+
 
 
        // locatie van de dropdown zo maken dat die als y-as label werkt?
@@ -285,14 +291,14 @@ function drawScatter(scatterArrays, scatterData, selection, year) {
     svg.append("text")
        .attr("class", "y axisLabel")
        .attr("transform", "rotate(-90)")
-       .attr("y", 0 - 0.7 * scatterMargin.left)
-       .attr("x", 0 - totalScatterHeight / 2)
+       .attr("y", 0 - scatterMargin.left)
+       .attr("x", 0 - totalScatterHeight / 1.3)
        .attr("dy", "1em")
        .text("Agricultural land (% of land area)");
    //
     // add x-axis label
     svg.append("text")
-       .attr("class", "axisLabel")
+       .attr("class", "x axisLabel")
        .attr("y", totalScatterHeight - 50)
        .attr("x", totalScatterWidth / 8)
        .text("Ecological footprint (number of earths)");
@@ -526,15 +532,15 @@ function scatterSliderUpdate() {
 // hier ook nog meegeven de data?
 function updateScatter(selection, year, scatterData) {
   // checken als allebei hetzelfde niet updaten?
-    if (year != currentYear) {
-        scatterArrays = makeScatterArrays(scatterData, year);
-        currentYear = year;
-    };
+    // if (year != currentYear) {
+    //     scatterArrays = makeScatterArrays(scatterData, year);
+    //     currentYear = year;
+    // };
 
     calculateNewDomains = calculateMinMax(scatterData, selection);
     // console.log(calculateNewDomains)
     yScale.domain([calculateNewDomains[3], calculateNewDomains[2]]);
-    xScale.domain([calculateNewDomains[3], calculateNewDomains[2]]);
+    // xScale.domain([calculateNewDomains[3], calculateNewDomains[2]]);
 
 
 // kunnen deze hieronder weg?
@@ -549,34 +555,47 @@ function updateScatter(selection, year, scatterData) {
     console.log(calculateNewDomains)
     console.log(Object.keys(scatterData[year-1961][year]))
 
-    svg.selectAll("circle")
-       .data(Object.keys(scatterData[year-1961][year]))
+    var updateSvg = svg.selectAll(".dot")
+       .data(Object.keys(scatterData[year-1961][year]));
+
+       updateSvg
+       .on('mouseover', tooltip.show)
+       .on('mouseout', tooltip.hide)
+       .on('click', function() {areaUpdate(this.id)});
+
+       updateSvg
        .transition()
        .duration(1000)
        .attr("cx", function(d) {
-            var xCor = scatterData[year-1961][year][d]["footprint"];
+            var xCor = +scatterData[year-1961][year][d]["footprint"];
+            console.log(xCor)
             return xScale(xCor);
         })
        .attr("cy", function(d) {
            var yCor = scatterData[year-1961][year][d][selection];
+           console.log(yCor)
            return yScale(yCor);
         })
-       .attr("r", 4)
-       .on('mouseover', tooltip.show)
-       .on('mouseout', tooltip.hide);
+       .attr("r", 4);
 
+    console.log(xAxis)
     // Update X Axis
-    svg.select(".x.axis")
-       .transition()
-       .duration(1000)
-       .call(xAxis);
+    // svg.select(".x.axis")
+    //    .transition()
+    //    // .duration(1000)
+    //    .call(xAxis);
 
+    console.log("erna")
 
+    console.log(svg.select(".y.axis"))
     // Update Y Axis
     svg.select(".y.axis")
-       .transition()
-       .duration(1000)
+       .transition();
+       // .duration(1000)
+       svg.select(".y.axis")
        .call(yAxis);
+
+    console.log("erna2")
 
 
 
@@ -588,12 +607,24 @@ function updateScatter(selection, year, scatterData) {
 
                       return tooltipText;
                     });
+    console.log(tooltip)
     svg.call(tooltip);
+    console.log("erna3")
 
+    console.log(selection)
     // add y-axis label
-    svg.select(".y.axislabel")
+    console.log(svg.select(".y.axisLabel"))
+
+    svg.selectAll(".y.axisLabel")
+    // .attr("transform", "rotate(-90)")
+    // .attr("y", 0 - 0.7 * scatterMargin.left)
+    // .attr("x", 0 - totalScatterHeight / 2)
+    // .attr("dy", "1em")
+       // .transition()
        .text(function() {
+         console.log(selection)
          if (selection == "agriLand") {
+           console.log("agri")
            return "Agricultural land (% of land area)"
          }
          else if (selection == "assistance") {
@@ -606,6 +637,7 @@ function updateScatter(selection, year, scatterData) {
            return "KOF Globalisation index"
          }
          else if (selection == "population") {
+           console.log("popu")
            return "Population density (people per sq. km of land area)"
          }
        });

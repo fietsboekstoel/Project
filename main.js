@@ -25,7 +25,7 @@ window.onload = function(){
     // mapMaker(readyData[correctYearDict][selectedYear])
     mapMaker(mapData);
     scatterMaker(scatterData);
-    areaMaker();
+    areaMaker("null");
   };
 
 };

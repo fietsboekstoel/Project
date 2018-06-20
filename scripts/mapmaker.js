@@ -27,20 +27,42 @@ function mapMaker(alldata) {
                       highlightBorderColor: '#B7B7B7'}
     });
     d3.selectAll("path")
-      .style("fill", function(d) {
-        console.log(d.id)
-        countryCode = d.id;
-        console.log(selectedData[countryCode])
-        if (selectedData[countryCode]) {
-          countryDict = selectedData[countryCode]
-          return selectedData[countryCode].fillKey;
-        }
-        else {
-          return "#efefef"
-        }
-        console.log(countryDict.fillKey)
-
+      .on('click', function() {
+        console.log(this);
+        var className = this.getAttribute("class");
+        className = className.slice(-3,);
+        console.log(className);
+        areaUpdate(className);
       });
+      // .on("mouseover", function() {
+      //   var allDots = d3.selectAll(".dot");
+      //   var className = this.getAttribute("class");
+      //   className = className.slice(-3,);
+      //   console.log(className)
+      //   for (i = 0; i < allDots.length; i++) {
+      //     console.log(allDots[i].id)
+      //     if (allDots[i].id == className) {
+      //       console.log(allDots[i])
+      //       // allDots[i].style("fill": "blue")
+      //     };
+      //   };
+      // });
+
+
+    //   .style("fill", function(d) {
+    //     console.log(d.id)
+    //     countryCode = d.id;
+    //     console.log(selectedData[countryCode])
+    //     if (selectedData[countryCode]) {
+    //       countryDict = selectedData[countryCode]
+    //       return selectedData[countryCode].fillKey;
+    //     }
+    //     else {
+    //       return "#efefef"
+    //     }
+    //     console.log(countryDict.fillKey)
+    //
+    //   });
     // console.log(basic_choropleth)
     sliderUpdate(basic_choropleth, alldata);
 };

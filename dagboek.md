@@ -80,7 +80,64 @@
 - verder aan area/line graph
 - kleurenfunctie verbeteren
 
+## 20 juni 2018:
+### Gedaan:
+- colorcoding vd map
+- updates werkend
+- area graph afgemaakt
+- area graph interactie werkend
+
 ## To do:
+### Belangrijk:
+-	Wat te doen met missing data?
+
+###	Map:
+o	titel
+o	Locatie
+o	Kleurfunctie
+o	highlightkleur
+o	legenda
+o	tooltip aanvullen
+o	koppelen aan punten scatter
+o	legenda hover maken?
+
+###	Scatter:
+-	Y values correct
+-	Y-as label locatie
+-	Assen + 1 vanwege ticks (hardcoden?)
+-	Loga as?
+-	Dingen “waar nodig” doen met switch?
+-	Tooltip aanvullen & locatie
+-	Lijntjes bij tooltip
+-	Koppelen aan land op map
+-	scatterArrays functie eruit?
+-	Negatieve waarden voor development assistance
+
+###	Line/stacked area:
+-	Astitels
+-	Titel
+-	Legenda (en woorden eruit)
+-	Komma’s uit de tic labels
+-	Updatefunctie verbeteren
+-	Kleuren anders?
+-	Wanneer geen data alleen totaal aangeven
+
+###	Verder:
+-	Slider mooier
+-	Alles mooier
+-	Tabs?
+-	Data sources toevoegen
+-	Filenames github
+-	Informatieve tekst toevoegen
+1. relevantie
+2. gebruikte concepten
+3. eenheden
+
+
+
+
+
+
 - missing data opvangen (wat gebeurt er met "null")
 - logaritmische y-as voor scatter waar nodig?
 - legenda voor map

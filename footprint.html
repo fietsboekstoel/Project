@@ -70,7 +70,7 @@ HTML file (containing necessary files, hyperlink to original data and buttons)
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Total world data voor de line graph misschien hier <span class="sr-only">(current)</span></a>
+                        <a class="nav-link worldButton" href="#">View stacked area graph for whole world <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Data source</a>
@@ -114,9 +114,6 @@ HTML file (containing necessary files, hyperlink to original data and buttons)
     <!-- <div class="slidecontainer"> -->
       <!-- <input type="range" min="1" max="100" value="50" class="slider" id="myRange"> -->
     <!-- </div> -->
-        </div>
-
-    </div>
 
         <div class="row" id="thirdrow">
             <div class="col-lg-6">
@@ -129,8 +126,9 @@ HTML file (containing necessary files, hyperlink to original data and buttons)
                 </select>
             </div>
             <div class="col-lg-6" id="scatterColumn">
-                <div class="container" id="scatterContainer"style="position: relative; width: 500px; height: 400px;"></div>
+                <div id="areaHere"></div>
             </div>
+        </div>
         </div>
     </body>
 </html>
