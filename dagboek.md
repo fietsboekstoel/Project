@@ -92,14 +92,14 @@
 -	Wat te doen met missing data?
 
 ###	Map:
-o	titel
-o	Locatie
-o	Kleurfunctie
-o	highlightkleur
-o	legenda
-o	tooltip aanvullen
-o	koppelen aan punten scatter
-o	legenda hover maken?
+-	titel
+-	Locatie
+-	Kleurfunctie
+-	highlightkleur
+-	legenda
+-	tooltip aanvullen
+-	koppelen aan punten scatter
+-	legenda hover maken?
 
 ###	Scatter:
 -	Y values correct
@@ -132,13 +132,3 @@ o	legenda hover maken?
 1. relevantie
 2. gebruikte concepten
 3. eenheden
-
-
-
-
-
-
-- missing data opvangen (wat gebeurt er met "null")
-- logaritmische y-as voor scatter waar nodig?
-- legenda voor map
-- tooltips aanvullen (map en scatter)
