@@ -8,7 +8,7 @@ function dataTransform(extradata, globindexdata, footprintdata){
   scatterDictList = [];
 
   // allCountriesPerYear = {}
-  numberOfCountries = 127;
+  numberOfCountries = 126;
 
   for (year = 1961; year < 2015; year++){
     allCountriesPerYear = {};

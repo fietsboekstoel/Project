@@ -12,11 +12,14 @@ function mapMaker(alldata) {
     var basic_choropleth = new Datamap({
     element: document.getElementById("mapHere"),
     projection: "mercator",
-    fills: {defaultFill: "#efefef"},
+    fills: {defaultFill: "#FFF0F2"},
             // fillColor: function(d) {
             //   return colorCode(d)
             // }},
     data: selectedData,
+    popupTemplate: function(geo, data) {
+      return "<div class='hoverinfo'>"+data.name+"<\div>";
+    },
     geographyConfig: {borderColor: '#DEDEDE',
                       highlightBorderWidth: 2,
                       // don't change color on mouse hover
@@ -34,6 +37,40 @@ function mapMaker(alldata) {
         console.log(className);
         areaUpdate(className);
       });
+
+      d3.selectAll('#mapHere').on('mouseover', function(info) {
+        if (d3.event.target.tagName == "path"){
+         //since you want the bubble only
+          var className = d3.select(d3.event.target).data()[0].id;
+          // console.log(className)
+            className = "circle#" + className;
+            d3.selectAll(className)
+              .style("fill", "red");
+        }
+      });
+      d3.selectAll('#mapHere').on('mouseout', function(info) {
+        if (d3.event.target.tagName == "path"){
+          //since you want the bubble only
+          var className = d3.select(d3.event.target).data()[0].id;
+          className = "circle#" + className;
+          d3.selectAll(className)
+            .style("fill", "grey");
+        }
+      });
+      // .on('mouseover', function() {
+      //   var className = this.getAttribute("class");
+      //   className = className.slice(-3,);
+      //   className = "circle#" + className
+      //   d3.selectAll(className)
+      //     .style("fill", "pink");
+      //   })
+      // .on('mouseout', function() {
+      //   var className = this.getAttribute("class");
+      //   className = className.slice(-3,);
+      //   className = "circle#" + className
+      //   d3.selectAll(className)
+      //     .style("fill", "black");
+      // });
       // .on("mouseover", function() {
       //   var allDots = d3.selectAll(".dot");
       //   var className = this.getAttribute("class");
@@ -88,8 +125,8 @@ function colorCode(value) {
   // min en max nodig?
   // dan op basis daarvan percentages verdelen
   var colorScale = d3.scale.linear()
-                           .domain([0, 1, 11])
-                           .range(["green", "white", "red"]);
+                           .domain([0, 1, 6])
+                           .range(["green", "white", "black"]);
 
   // console.log(color(value))
 

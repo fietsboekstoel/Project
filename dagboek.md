@@ -87,6 +87,17 @@
 - area graph afgemaakt
 - area graph interactie werkend
 
+## 21 en 22 juni 2018 (21 vergeten te updaten):
+### Gedaan:
+- na een hoop gedoe m'n tooltips beter werkend gekregen
+- oplichtende dots in de scatter plot obv hoveren over kaart
+- y-as kloppend
+- kleurfunctie verbeterd
+- beginnetje gemaakt met missing data ondervangen
+
+### Gepland:
+- na het weekend alle puntjes op de to-do lijst afwerken
+
 ## To do:
 ### Belangrijk:
 -	Wat te doen met missing data?
@@ -98,8 +109,6 @@
 -	highlightkleur
 -	legenda
 -	tooltip aanvullen
--	koppelen aan punten scatter
--	legenda hover maken?
 
 ###	Scatter:
 -	Y values correct
@@ -123,6 +132,7 @@
 -	Wanneer geen data alleen totaal aangeven
 
 ###	Verder:
+- outliers weghalen?
 -	Slider mooier
 -	Alles mooier
 -	Tabs?

@@ -6,9 +6,9 @@
 // alltime minmax ipv per jaar (scatterArrays nog nodig??)
 
 // globale variabelen?
-var xScale, yScale, xAxis, yAxis, tooltip, svg, currentYear, currentSelection, scatterArrays, scatterData;
+var xScale, yScale, xAxis, yAxis, tooltip, svg, currentSelection, scatterArrays, scatterData;
 var startYear = 1961;
-
+var currentYear = 1961;
 
 
 function scatterMaker(totalScatterData) {
@@ -105,7 +105,7 @@ function scatterMaker(totalScatterData) {
   // console.log(scatterData)
   // var startYear = 1961;
   // behalve de dicts ook nog ff een list of lists meegeven voor berekenen min en max
-  currentSelection = "agriLand"
+  currentSelection = "agriLand";
   // scatterArrays = makeScatterArrays(scatterData, startYear);
   currentYear = startYear;
   drawScatter(scatterArrays, scatterData, currentSelection, currentYear);
@@ -253,13 +253,26 @@ function drawScatter(scatterArrays, scatterData, selection, year) {
     tooltip = d3.tip()
                     .attr('class', 'tooltip')
                     .html(function(d) {
-                      var tooltipText = "<strong>Country: </strong><span>" + scatterData[year-1961][year][d].countryName + "</span>" + "<br>";
+                      // console.log("d:", d)
+                      year = currentYear;
+                      var tooltipText = "<strong>Country: </strong><span>" + scatterData[year-1961][year][d].countryName + "</span>" + "<br>",
+                      tooltipFootprint = "<strong>Ecological footprint: </strong><span>" + scatterData[year - 1961][year][d].footprint + "</span>" + "<br>",
+                      tooltipAgriLand = "<strong>Agricultural land (%): </strong><span>" + scatterData[year - 1961][year][d].agriLand + "</span>" + "<br>",
+                      tooltipAssistance = "<strong>Assistance received: </strong><span>" + scatterData[year - 1961][year][d].assistance + "</span>" + "<br>",
+                      tooltipLivestock = "<strong>Livestock production: </strong><span>" + scatterData[year - 1961][year][d].livestock + "</span>" + "<br>",
+                      tooltipPopulation = "<strong>Population density: </strong><span>" + scatterData[year - 1961][year][d].population + "</span>" + "<br>",
+                      tooltipGlobInd = "<strong>Globalisation index: </strong><span>" + scatterData[year - 1961][year][d].globInd + "</span>" + "<br>";
 
-                      return tooltipText;
+
+
+
+
+
+                      return tooltipText + tooltipFootprint + tooltipAgriLand + tooltipAssistance + tooltipLivestock + tooltipPopulation + tooltipGlobInd;
                     });
     svg.call(tooltip);
    //
-   console.log(scatterData[year-1961][year])
+   // console.log(scatterData[year-1961][year])
     // draw dots/data points of scatter plot based on data (birds/mammals)
     svg.selectAll("circle")
        .data(Object.keys(scatterData[year-1961][year]))
@@ -400,6 +413,7 @@ function calculateMinMax(scatterData, selection) {
       for (j = 0; j < numberOfCountries; j++) {
         // console.log(joe[countryCodes[j]])
         if (j == 0 && i == 0) {
+          // console.log(joe[countryCodes[j]].assistance)
             minAgr = joe[countryCodes[j]].agriLand;
             // console.log(minAgr)
             maxAgr = joe[countryCodes[j]].agriLand;
@@ -407,50 +421,55 @@ function calculateMinMax(scatterData, selection) {
             maxAss = joe[countryCodes[j]].assistance;
             minPop = joe[countryCodes[j]].population;
             maxPop = joe[countryCodes[j]].population;
-            minGlo = joe[countryCodes[j]].globInd;
-            maxGlo = joe[countryCodes[j]].globInd;
+            // console.log(scatterData[9][1970][countryCodes[j]].globInd)
+            minGlo = scatterData[9][1970][countryCodes[j]].globInd;
+            maxGlo = scatterData[9][1970][countryCodes[j]].globInd;
             minLiv = joe[countryCodes[j]].livestock;
             maxLiv = joe[countryCodes[j]].livestock;
             minFoo = joe[countryCodes[j]].footprint;
             maxFoo = joe[countryCodes[j]].footprint;
         }
         else {
-          // console.log(joe[countryCodes[j]].livestock)
-          if (joe[countryCodes[j]].agriLand > maxAgr) {
+          // console.log(joe[countryCodes[j]].assistance)
+          if (parseInt(joe[countryCodes[j]].agriLand) > parseInt(maxAgr)) {
             maxAgr = joe[countryCodes[j]].agriLand;
           }
-          else if (joe[countryCodes[j]].agriLand < minAgr) {
+          else if (parseInt(joe[countryCodes[j]].agriLand) < parseInt(minAgr)) {
             minAgr = joe[countryCodes[j]].agriLand
             // console.log(minAgr)
           }
-          if (joe[countryCodes[j]].assistance > maxAss) {
+          if (parseInt(joe[countryCodes[j]].assistance) > parseInt(maxAss)) {
+            // console.log("ja", typeof(joe[countryCodes[j]].assistance), typeof(maxAss))
+
             maxAss = joe[countryCodes[j]].assistance;
           }
-          else if (joe[countryCodes[j]].assistance < minAss) {
+          else if (parseInt(joe[countryCodes[j]].assistance) < parseInt(minAss)) {
             minAss = joe[countryCodes[j]].assistance
           }
-          if (joe[countryCodes[j]].population > maxPop) {
+          if (parseInt(joe[countryCodes[j]].population) > parseInt(maxPop)) {
             maxPop = joe[countryCodes[j]].population;
           }
-          else if (joe[countryCodes[j]].population < minPop) {
+          else if (parseInt(joe[countryCodes[j]].population) < parseInt(minPop)) {
             minPop = joe[countryCodes[j]].population
           }
-          if (joe[countryCodes[j]].globInd > maxGlo) {
+          if (parseInt(joe[countryCodes[j]].globInd) > parseInt(maxGlo)) {
             maxGlo = joe[countryCodes[j]].globInd;
+            // console.log(maxGlo)
           }
-          else if (joe[countryCodes[j]].globInd < minGlo) {
-            minGlo = joe[countryCodes[j]].globInd
+          else if (parseInt(joe[countryCodes[j]].globInd) < parseInt(minGlo)) {
+            minGlo = joe[countryCodes[j]].globInd;
+            // console.log(minGlo)
           }
-          if (joe[countryCodes[j]].livestock > maxLiv) {
+          if (parseInt(joe[countryCodes[j]].livestock) > parseInt(maxLiv)) {
             maxLiv = joe[countryCodes[j]].livestock;
           }
-          else if (joe[countryCodes[j]].livestock < minLiv) {
+          else if (parseInt(joe[countryCodes[j]].livestock) < parseInt(minLiv)) {
             minLiv = joe[countryCodes[j]].livestock
           }
-          if (joe[countryCodes[j]].footprint > maxFoo) {
+          if (parseInt(joe[countryCodes[j]].footprint) > parseInt(maxFoo)) {
             maxFoo = joe[countryCodes[j]].footprint;
           }
-          else if (joe[countryCodes[j]].footprint < minFoo) {
+          else if (parseInt(joe[countryCodes[j]].footprint) < parseInt(minFoo)) {
             minFoo = joe[countryCodes[j]].footprint
           }
         }
@@ -482,7 +501,7 @@ function calculateMinMax(scatterData, selection) {
     else if (selection == "globInd") {
         // var minValueY = Math.min.apply(Math, scatterArrays[3])
         // var maxValueY = Math.max.apply(Math, scatterArrays[3])
-        var minValueY = minGlo;
+        var minValueY = 0;// minGlo;
         var maxValueY = maxGlo;
     }
     else if (selection == "population") {
@@ -511,7 +530,8 @@ function calculateMinMax(scatterData, selection) {
 
 function scatterOptions() {
   d3.select("select")
-    .on("change",function(d){
+    .on("change",function() {
+      // console.log(d)
         currentSelection = d3.select("#scatterDropdown").node().value;
         // console.log(currentSelection);
         updateScatter(currentSelection, currentYear, scatterData);
@@ -521,7 +541,7 @@ function scatterOptions() {
 function scatterSliderUpdate() {
     document.getElementById("slider").addEventListener('input', function(e) {
         var requestedYear = parseInt(e.target.value);
-        console.log("scatter year update?")
+        // console.log("scatter year update?")
         updateScatter(currentSelection, requestedYear, scatterData);
     });
 };
@@ -531,11 +551,13 @@ function scatterSliderUpdate() {
 
 // hier ook nog meegeven de data?
 function updateScatter(selection, year, scatterData) {
+  currentYear = year;
   // checken als allebei hetzelfde niet updaten?
     // if (year != currentYear) {
     //     scatterArrays = makeScatterArrays(scatterData, year);
     //     currentYear = year;
     // };
+    // console.log(scatterData)
 
     calculateNewDomains = calculateMinMax(scatterData, selection);
     // console.log(calculateNewDomains)
@@ -552,42 +574,80 @@ function updateScatter(selection, year, scatterData) {
                   .scale(xScale)
                   .orient("bottom");
 
-    console.log(calculateNewDomains)
-    console.log(Object.keys(scatterData[year-1961][year]))
+    // console.log(calculateNewDomains)
+    // console.log(Object.keys(scatterData[year-1961][year]))
+
+
 
     var updateSvg = svg.selectAll(".dot")
        .data(Object.keys(scatterData[year-1961][year]));
-
-       updateSvg
-       .on('mouseover', tooltip.show)
-       .on('mouseout', tooltip.hide)
-       .on('click', function() {areaUpdate(this.id)});
 
        updateSvg
        .transition()
        .duration(1000)
        .attr("cx", function(d) {
             var xCor = +scatterData[year-1961][year][d]["footprint"];
-            console.log(xCor)
+            // console.log(xCor)
             return xScale(xCor);
         })
        .attr("cy", function(d) {
            var yCor = scatterData[year-1961][year][d][selection];
-           console.log(yCor)
+           // console.log(yCor)
            return yScale(yCor);
         })
-       .attr("r", 4);
+       .attr("r", function(d) {
+         if (scatterData[year - 1961][year][d]["globInd"] == null || scatterData[year - 1961][year][d]["globInd"] == "") {
+           return 0;
+         }
+         else {
+           return 4;
+         }
+       })
 
-    console.log(xAxis)
+       // console.log(svg.selectAll(".dot"))
+
+       svg.selectAll(".dot")
+       .on('mouseover', tooltip.show)
+       .on('mouseout', tooltip.hide)
+       .on('click', function() {areaUpdate(this.id)});
+
+       svg.selectAll("circle")
+          .on("mouseover", function() {
+            console.log("Fixen net als op die andere manier dat een land ook oplicht")
+          });
+       // d3.selectAll('#scatterHere').on('mouseover', function(info) {
+       //   console.log(info)
+       //   if (d3.event.target.tagName == "circle"){
+       //    //since you want the bubble only
+       //     var className = d3.select(d3.event.target).data()[0];
+       //     console.log(className)
+       //       // className = "circle#" + className;
+       //       d3.selectAll(className)
+       //         .style("fill", "red");
+       //   }
+       // });
+       // d3.selectAll('#scatterHere').on('mouseout', function(info) {
+       //   if (d3.event.target.tagName == "circle"){
+       //     //since you want the bubble only
+       //     var className = d3.select(d3.event.target).data()[0].id;
+       //     className = "circle#" + className;
+       //     d3.selectAll(className)
+       //       .style("fill", "grey");
+       //   }
+       // });
+
+
+
+    // console.log(xAxis)
     // Update X Axis
     // svg.select(".x.axis")
     //    .transition()
     //    // .duration(1000)
     //    .call(xAxis);
 
-    console.log("erna")
+    // console.log("erna")
 
-    console.log(svg.select(".y.axis"))
+    // console.log(svg.select(".y.axis"))
     // Update Y Axis
     svg.select(".y.axis")
        .transition();
@@ -595,25 +655,37 @@ function updateScatter(selection, year, scatterData) {
        svg.select(".y.axis")
        .call(yAxis);
 
-    console.log("erna2")
+    // console.log("erna2")
 
 
-
+    // console.log(scatterData[year - 1961][year])
     // create and call tooltip to appear when hovering on data point
-    tooltip = d3.tip()
-                    .attr('class', 'tooltip')
-                    .html(function(d) {
-                      var tooltipText = "<strong>Country: </strong><span>" + scatterData[year-1961][year][d].countryName + "</span>" + "<br>";
-
-                      return tooltipText;
-                    });
-    console.log(tooltip)
+    // d3.selectAll(".tooltip")
+    // // tooltip = d3.tip()
+    //             // .attr("class", "tooltip")
+    //             .html(function(d) {
+    //               console.log(d, year)
+    //               // console.log(scatterData)
+    //               // console.log(scatterData[year - 1961][year])
+    //               var tooltipText = "<strong>Country: </strong><span>" + scatterData[year - 1961][year][d].countryName + "</span>" + "<br>",
+    //               tooltipFootprint = "<strong>Ecological footprint: </strong><span>" + scatterData[year - 1961][year][d].footprint + "</span>" + "<br>",
+    //               tooltipAgriLand = "<strong>Agricultural land (%): </strong><span>" + scatterData[year - 1961][year][d].agriLand + "</span>" + "<br>",
+    //               tooltipAssistance = "<strong>Assistance received: </strong><span>" + scatterData[year - 1961][year][d].assistance + "</span>" + "<br>",
+    //               tooltipLivestock = "<strong>Livestock production: </strong><span>" + scatterData[year - 1961][year][d].livestock + "</span>" + "<br>",
+    //               tooltipPopulation = "<strong>Population density: </strong><span>" + scatterData[year - 1961][year][d].population + "</span>" + "<br>",
+    //               tooltipGlobInd = "<strong>Globalisation index: </strong><span>" + scatterData[year - 1961][year][d].globInd + "</span>" + "<br>";
+    //               // console.log(d, year)
+    //               // console.log(scatterData[year - 1961][year][d])
+    //
+    //               return tooltipText + tooltipFootprint + tooltipAgriLand + tooltipAssistance + tooltipLivestock + tooltipPopulation + tooltipGlobInd;
+    //             });
+    // console.log(tooltip)
     svg.call(tooltip);
-    console.log("erna3")
+    // console.log("erna3")
 
-    console.log(selection)
+    // console.log(selection)
     // add y-axis label
-    console.log(svg.select(".y.axisLabel"))
+    // console.log(svg.select(".y.axisLabel"))
 
     svg.selectAll(".y.axisLabel")
     // .attr("transform", "rotate(-90)")
@@ -622,9 +694,9 @@ function updateScatter(selection, year, scatterData) {
     // .attr("dy", "1em")
        // .transition()
        .text(function() {
-         console.log(selection)
+         // console.log(selection)
          if (selection == "agriLand") {
-           console.log("agri")
+           // console.log("agri")
            return "Agricultural land (% of land area)"
          }
          else if (selection == "assistance") {
@@ -637,9 +709,10 @@ function updateScatter(selection, year, scatterData) {
            return "KOF Globalisation index"
          }
          else if (selection == "population") {
-           console.log("popu")
+           // console.log("popu")
            return "Population density (people per sq. km of land area)"
          }
        });
+       return;
 
   };

@@ -48,7 +48,7 @@
 }
 
 .colors {
-  background: linear-gradient(to right, #2dc4b2, #3bb3c3, #669ec4, #8b88b6, #a2719b, #aa5e79);
+  background: linear-gradient(to right, green, white, #999999, #323232, black);
   margin-bottom: 5px;
   height: 15px;
 }
@@ -70,10 +70,10 @@
 .tooltip {
   position: absolute;
   width: 280px;
-  height: 85px;
+  height: 150px;
   padding: 2px;
   font: 14px;
-  background: violet;
+  background: lightgrey;
   border: 0px;
   border-radius: 8px;
   pointer-events: none;
@@ -82,7 +82,14 @@
 #mapHere svg {
    height: 400px;
 }
+.dot {
+  fill: grey;
+}
 
 .dot:hover {
-  fill: blue;
+  fill: black;
+}
+
+body, .session {
+  background-color: #FFF0F2;
 }
