@@ -6,7 +6,7 @@
 // alltime minmax ipv per jaar (scatterArrays nog nodig??)
 
 // globale variabelen?
-var xScale, yScale, xAxis, yAxis, tooltip, svg, currentSelection, scatterArrays, scatterData;
+var xScale, yScale, xAxis, yAxis, tooltip, svg, currentSelection, scatterArrays, scatterData, scatterMargin, totalScatterHeight;
 var startYear = 1961;
 var currentYear = 1961;
 
@@ -185,33 +185,25 @@ function drawScatter(scatterArrays, scatterData, selection, year) {
   calculatedMinMax= calculateMinMax(scatterData, selection)
 
    //
-   //  // add graph title depending on data (birds/mammals)
-   //  d3.select("body")
-   //    .append("h1")
-   //    .attr("class", "title")
-   //    .text(function() {
-   //      if (selection == "Birds") {
-   //        title = "Relation between total number of bird species and number of threatened bird species per country"
-   //      }
-   //      else {
-   //        title = "Relation between total number of mammal species and number of threatened mammal species per country"
-   //      }
-   //      return title
-   //    });
+    // add graph title depending on data (birds/mammals)
+    d3.select("#scatterHere")
+      .append("h1")
+      .attr("class", "title scatter")
+      .text("Relation between ecological footprint and amount of agricultural land per country");
    //
    //
     // consider size of svg and margin to place axis labels in within svg
     var totalScatterWidth = d3.select("#scatterHere")[0][0].clientWidth;
     // console.log(totalScatterWidth)
-    var totalScatterHeight = 500;
-    var scatterMargin = {left: 150, top: 10, right: 50, bottom: 100};
+    totalScatterHeight = 800;
+    scatterMargin = {left: 150, top: 10, right: 50, bottom: 100};
 
     // define variables for width and height of graph (rather than the svg)
     var scatterWidth = totalScatterWidth - scatterMargin.left - scatterMargin.right;
     var scatterHeight = totalScatterHeight - scatterMargin.top - scatterMargin.bottom;
 
     // create svg to draw on
-    svg = d3.select("#scatterLocation")
+    svg = d3.select("#scatterHere")
                 .append("svg")
                 .attr("class", "graph")
                 .attr("width", totalScatterWidth)
@@ -315,6 +307,34 @@ function drawScatter(scatterArrays, scatterData, selection, year) {
        .attr("y", totalScatterHeight - 50)
        .attr("x", totalScatterWidth / 8)
        .text("Ecological footprint (number of earths)");
+
+
+
+       d3.selectAll('#scatterHere').on('mouseover', function() {
+         console.log("info")
+         if (d3.event.target.tagName == "circle"){
+          //since you want the bubble only
+           var className = d3.select(d3.event.target).data()[0];
+           console.log(className)
+             // className = "circle#" + className;
+             className = ".datamaps-subunit." + className;
+             console.log(this, d3.select(className))
+             currentColor = d3.selectAll(className)
+             console.log(currentColor)
+             d3.selectAll(className)
+               .style("opacity", 0.5);
+         }
+       });
+
+       d3.selectAll('#scatterHere').on('mouseout', function() {
+         if (d3.event.target.tagName == "circle"){
+           //since you want the bubble only
+           var className = d3.select(d3.event.target).data()[0];
+           className = ".datamaps-subunit." + className;
+           d3.selectAll(className)
+             .style("opacity", 1);
+         }
+       });
    //
    //   // add color legend to svg
    //  var legendX = graphWidth + 20
@@ -563,6 +583,14 @@ function updateScatter(selection, year, scatterData) {
     // console.log(calculateNewDomains)
     yScale.domain([calculateNewDomains[3], calculateNewDomains[2]]);
     // xScale.domain([calculateNewDomains[3], calculateNewDomains[2]]);
+    if (selection == "assistance") {
+      yDomainSelection = [calculateNewDomains[3], calculateNewDomains[2]]
+      yScale = d3.scale.log()
+                       .base(Math.E)
+                       .domain(yDomainSelection)
+                       .range([scatterMargin.top, totalScatterHeight - scatterMargin.bottom]);
+
+    }
 
 
 // kunnen deze hieronder weg?
@@ -597,7 +625,12 @@ function updateScatter(selection, year, scatterData) {
         })
        .attr("r", function(d) {
          if (scatterData[year - 1961][year][d]["globInd"] == null || scatterData[year - 1961][year][d]["globInd"] == "") {
-           return 0;
+           if (selection == "globInd") {
+             return 0;
+           }
+           else {
+             return 4;
+           }
          }
          else {
            return 4;
@@ -611,28 +644,33 @@ function updateScatter(selection, year, scatterData) {
        .on('mouseout', tooltip.hide)
        .on('click', function() {areaUpdate(this.id)});
 
-       svg.selectAll("circle")
-          .on("mouseover", function() {
-            console.log("Fixen net als op die andere manier dat een land ook oplicht")
-          });
-       // d3.selectAll('#scatterHere').on('mouseover', function(info) {
-       //   console.log(info)
+       // svg.selectAll("circle")
+       //    .on("mouseover", function() {
+       //      console.log("Fixen net als op die andere manier dat een land ook oplicht")
+       //    });
+       // d3.selectAll('#scatterHere').on('mouseover', function() {
+       //   console.log("info")
        //   if (d3.event.target.tagName == "circle"){
        //    //since you want the bubble only
        //     var className = d3.select(d3.event.target).data()[0];
        //     console.log(className)
        //       // className = "circle#" + className;
+       //       className = ".datamaps-subunit." + className;
+       //       console.log(this, d3.select(className))
+       //       currentColor = d3.selectAll(className)
+       //       console.log(currentColor)
        //       d3.selectAll(className)
-       //         .style("fill", "red");
+       //         .style("opacity", 0.5);
        //   }
        // });
-       // d3.selectAll('#scatterHere').on('mouseout', function(info) {
+       //
+       // d3.selectAll('#scatterHere').on('mouseout', function() {
        //   if (d3.event.target.tagName == "circle"){
        //     //since you want the bubble only
-       //     var className = d3.select(d3.event.target).data()[0].id;
-       //     className = "circle#" + className;
+       //     var className = d3.select(d3.event.target).data()[0];
+       //     className = ".datamaps-subunit." + className;
        //     d3.selectAll(className)
-       //       .style("fill", "grey");
+       //       .style("opacity", 1);
        //   }
        // });
 
@@ -713,6 +751,32 @@ function updateScatter(selection, year, scatterData) {
            return "Population density (people per sq. km of land area)"
          }
        });
+
+       // add graph title depending on data (birds/mammals)
+       d3.select(".scatter.title")
+         .text(function() {
+           var titlePart1 = "Relation between ecological footprint and "
+           var titlePart3 = "per country"
+           if (selection == "agriLand") {
+             var titlePart2 = "amount of agricultural land"
+           }
+           else if (selection == "assistance") {
+             var titlePart2 = "net development assistance received"
+           }
+           else if (selection == "livestock") {
+             var titlePart2 = "livestock production index"
+           }
+           else if (selection == "population") {
+             var titlePart2 = "population density"
+           }
+           else {
+             var titlePart2 = "globalisation index"
+           }
+           title = titlePart1 + titlePart2 + titlePart3;
+           return title
+         });
+
+
        return;
 
   };

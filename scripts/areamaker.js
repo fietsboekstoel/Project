@@ -3,7 +3,7 @@
 function areaMaker(selectCode) {
   // selectCode = "NOR"
 
-    var margin = {top: 20, right: 20, bottom: 30, left: 50},
+    var margin = {top: 100, right: 100, bottom: 100, left: 100},
         width = 960 - margin.left - margin.right,
         height = 500 - margin.top - margin.bottom;
 
@@ -89,12 +89,12 @@ function areaMaker(selectCode) {
           .attr("d", function(d) { return area(d.values); })
           .style("fill", function(d) { return color(d.name); });
 
-      browser.append("text")
-          .datum(function(d) { return {name: d.name, value: d.values[d.values.length - 1]}; })
-          .attr("transform", function(d) { return "translate(" + x(d.value.year) + "," + y(d.value.y0 + d.value.y / 2) + ")"; })
-          .attr("x", -6)
-          .attr("dy", ".35em")
-          .text(function(d) { return d.name; });
+      // browser.append("text")
+      //     .datum(function(d) { return {name: d.name, value: d.values[d.values.length - 1]}; })
+      //     .attr("transform", function(d) { return "translate(" + x(d.value.year) + "," + y(d.value.y0 + d.value.y / 2) + ")"; })
+      //     .attr("x", -6)
+      //     .attr("dy", ".35em")
+      //     .text(function(d) { return d.name; });
 
       svg.append("g")
           .attr("class", "x axis")

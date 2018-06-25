@@ -98,15 +98,25 @@
 ### Gepland:
 - na het weekend alle puntjes op de to-do lijst afwerken
 
+## 25 juni 2018:
+### Gedaan:
+- oplichtend land obv hoveren over scatter dot
+- titel scatter plot
+- bezig met astitels etc stacked area graph
+- bezig met lay out van pagina
+- bezig met y-as probleempjes van de scatter
+
+### Gepland:
+- verder met To Do list
+
 ## To do:
 ### Belangrijk:
--	Wat te doen met missing data?
+-	Wat te doen met missing data overal?
 
 ###	Map:
 -	titel
 -	Locatie
 -	Kleurfunctie
--	highlightkleur
 -	legenda
 -	tooltip aanvullen
 
@@ -118,7 +128,6 @@
 -	Dingen “waar nodig” doen met switch?
 -	Tooltip aanvullen & locatie
 -	Lijntjes bij tooltip
--	Koppelen aan land op map
 -	scatterArrays functie eruit?
 -	Negatieve waarden voor development assistance
 

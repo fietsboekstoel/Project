@@ -24,10 +24,10 @@ function mapMaker(alldata) {
                       highlightBorderWidth: 2,
                       // don't change color on mouse hover
                       highlightFillColor: function(geo) {
-                      return geo['fillKey'] || '#fa9fb5';
+                      return geo['fillColor'] || "#FFF0F2";
                       },
                       // only change border
-                      highlightBorderColor: '#B7B7B7'}
+                      highlightBorderColor: '#ffffff'}
     });
     d3.selectAll("path")
       .on('click', function() {
@@ -45,7 +45,7 @@ function mapMaker(alldata) {
           // console.log(className)
             className = "circle#" + className;
             d3.selectAll(className)
-              .style("fill", "red");
+              .style("opacity", 0.3);
         }
       });
       d3.selectAll('#mapHere').on('mouseout', function(info) {
@@ -54,7 +54,7 @@ function mapMaker(alldata) {
           var className = d3.select(d3.event.target).data()[0].id;
           className = "circle#" + className;
           d3.selectAll(className)
-            .style("fill", "grey");
+            .style("opacity", 1);
         }
       });
       // .on('mouseover', function() {
