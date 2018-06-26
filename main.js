@@ -8,6 +8,7 @@ window.onload = function(){
     .defer(d3.json, "scripts/allextravariables.json")
     .defer(d3.json, "scripts/globalisationindex.json")
     .defer(d3.json, "scripts/footprintdetails.json")
+    .defer(d3.json, "scripts/countryandcode.json")
     .awaitAll(transformData);
 
   function transformData(error, response){
@@ -15,6 +16,7 @@ window.onload = function(){
     var extra = response[0];
     var globind = response[1];
     var footprint = response[2];
+    var countrycodes = response[3];
     var readyData = dataTransform(extra, globind, footprint);
     currentYear = 1961;
     var correctYearDict = currentYear - 1961;
@@ -25,7 +27,8 @@ window.onload = function(){
     // mapMaker(readyData[correctYearDict][selectedYear])
     mapMaker(mapData);
     scatterMaker(scatterData);
-    areaMaker("null");
+    areaMaker("null", countryCodes);
+    areaLegendMaker();
   };
 
 };

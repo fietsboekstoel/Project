@@ -6,12 +6,13 @@
 // alltime minmax ipv per jaar (scatterArrays nog nodig??)
 
 // globale variabelen?
-var xScale, yScale, xAxis, yAxis, tooltip, svg, currentSelection, scatterArrays, scatterData, scatterMargin, totalScatterHeight;
+var xScale, yScale, xAxis, yAxis, tooltip, svg, currentSelection, scatterArrays, scatterData, scatterMargin, totalScatterHeight, codeData;
 var startYear = 1961;
 var currentYear = 1961;
 
 
-function scatterMaker(totalScatterData) {
+function scatterMaker(totalScatterData, updateAreaData) {
+  codeData = updateAreaData
   scatterData = totalScatterData;
   // // ensure both data sets are loaded before continuing
   // // d3.queue()
@@ -187,7 +188,7 @@ function drawScatter(scatterArrays, scatterData, selection, year) {
    //
     // add graph title depending on data (birds/mammals)
     d3.select("#scatterHere")
-      .append("h1")
+      .append("h2")
       .attr("class", "title scatter")
       .text("Relation between ecological footprint and amount of agricultural land per country");
    //
@@ -285,7 +286,7 @@ function drawScatter(scatterArrays, scatterData, selection, year) {
        .attr("r", 4)
        .on('mouseover', tooltip.show)
        .on('mouseout', tooltip.hide)
-       .on('click', function() {areaUpdate(this.id)});
+       .on('click', function() {areaUpdate(this.id, codeData)});
 
 
 
@@ -642,7 +643,7 @@ function updateScatter(selection, year, scatterData) {
        svg.selectAll(".dot")
        .on('mouseover', tooltip.show)
        .on('mouseout', tooltip.hide)
-       .on('click', function() {areaUpdate(this.id)});
+       .on('click', function() {areaUpdate(this.id, codeData)});
 
        // svg.selectAll("circle")
        //    .on("mouseover", function() {
@@ -756,7 +757,7 @@ function updateScatter(selection, year, scatterData) {
        d3.select(".scatter.title")
          .text(function() {
            var titlePart1 = "Relation between ecological footprint and "
-           var titlePart3 = "per country"
+           var titlePart3 = " per country"
            if (selection == "agriLand") {
              var titlePart2 = "amount of agricultural land"
            }

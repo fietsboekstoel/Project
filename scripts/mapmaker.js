@@ -6,6 +6,11 @@
 // tooltip aanvullen
 
 function mapMaker(alldata) {
+  d3.select("#mapHere")
+    .append("h2")
+    .attr("class", "title map")
+    .text("National ecological footprints in number of earths")
+
   startYear = 1961;
   selectedData = alldata[0][startYear];
   // keyArray = Object.keys(selectedData)

@@ -6,7 +6,7 @@
 .slider {
     -webkit-appearance: none;
     width: 100%;
-    height: 15px;
+    height: 10px;
     border-radius: 5px;
     background: #d3d3d3;
     outline: none;
@@ -43,7 +43,7 @@
 }
 
 .row {
-  height: 100px;
+  /* height: 100px; */
   width: 100%;
 }
 
@@ -79,10 +79,15 @@
   pointer-events: none;
 }
 
-#mapHere svg {
-   height: 500px;
-   width: 700px;
+#mapHere {
+   height: 70vh;
+   /* width: 700px; */
 }
+
+.row {
+  margin-left: 0;
+}
+
 .dot {
   fill: black;
 }
@@ -93,4 +98,19 @@
 
 body, .session {
   background-color: #FFF0F2;
+}
+
+#scatterDropdown {
+  width: 80%;
+}
+
+.mapLegendText {
+  font-weight: bold;
+}
+
+.legend {
+  width: 30px;
+  height: 15px;
+  stroke: black;
+  stroke-width: 1;
 }

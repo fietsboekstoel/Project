@@ -109,15 +109,26 @@
 ### Gepland:
 - verder met To Do list
 
+## 26 juni 2018:
+### Gedaan:
+- kleuren area graph aangepast op inhoud
+- astitels bij area graph
+- mededeling dat er geen detaildata is voor sommige landen toegevoegd
+- grafiektitel map
+
+### Gepland:
+- grafiektitel area graph mee laten veranderen
+- geen data mededeling voor landen die uberhaupt geen data hebben
+- rest van to do lijst
+
 ## To do:
 ### Belangrijk:
--	Wat te doen met missing data overal?
+-	missing data opvangen!!
 
 ###	Map:
--	titel
 -	Locatie
--	Kleurfunctie
--	legenda
+-	Kleurfunctie/achtergrondkleur beslissen
+-	legenda voor "no data available"
 -	tooltip aanvullen
 
 ###	Scatter:
@@ -125,23 +136,22 @@
 -	Y-as label locatie
 -	Assen + 1 vanwege ticks (hardcoden?)
 -	Loga as?
--	Dingen “waar nodig” doen met switch?
--	Tooltip aanvullen & locatie
--	Lijntjes bij tooltip
+-	Tooltip aanvullen & locatie (en afronden)
+-	Lijntjes bij tooltip?
 -	scatterArrays functie eruit?
--	Negatieve waarden voor development assistance
+-	Negatieve waarden voor development assistance (eruit?)
+- y en x as omwisselen voor beeld op pagina
 
 ###	Line/stacked area:
--	Astitels
 -	Titel
--	Legenda (en woorden eruit)
+-	Legenda aanpassen als totaal splitsen niet meer lukt
 -	Komma’s uit de tic labels
 -	Updatefunctie verbeteren
--	Kleuren anders?
 -	Wanneer geen data alleen totaal aangeven
 
 ###	Verder:
 - outliers weghalen?
+-	Dingen “waar nodig” doen met switch
 -	Slider mooier
 -	Alles mooier
 -	Tabs?

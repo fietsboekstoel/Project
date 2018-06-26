@@ -79,17 +79,22 @@ HTML file (containing necessary files, hyperlink to original data and buttons)
             </div>
         </nav>
 
-        <div class="row" id="firstrow" style="height: 20%">
-            <div class="col-lg-6">
-                <p>Hier komt tekst/info</p>
-                <div class='session' id='sliderbar'>
-                    <h2>Year: <label id='activeYear'>1961</label></h2>
-                    <input id='slider' class='row' type='range' min='1961' max='2014' step='1' value='1961' />
-                </div>
+        <!-- <div class="row h-20" id="firstrow">
+<!-- hier staat nu niks meer in dus namen aanpassen? -->
+        <!-- </div> -->
+
+        <div class="row h-50" id="secondrow">
+            <div class="col-lg-6" id="mapLocation">
+              <div id="mapHere"></div>
             </div>
             <div class="col-lg-6">
+              <div id="textRow" style="height: 75%">
+                <p>Hier komt tekst/info</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              </div>
+              <div id="mapLegendRow" style="height: 25%">
                 <div class='session'>
-                    <h2>Reserve/Deficit</h2>
+                    <p class="mapLegendText">Color code of number of earths:<br> Green / <1 = reserve Black / >1 = deficit)</p>
                     <div class='row colors'></div>
                     <div class='row labels'>
                         <div class='label'>0</div>
@@ -100,35 +105,52 @@ HTML file (containing necessary files, hyperlink to original data and buttons)
                         <div class='label'>9</div>
                     </div>
                 </div>
+              </div>
             </div>
         </div>
-
-        <div class="row" id="secondrow" style="height: 80%">
-            <div class="col-lg-6" id="scatterLocation">
-              <div id="scatterHere"></div>
-            </div>
-            <div class="col-lg-6" id="mapLocation">
-              <div id="mapHere"></div>
-            </div>
+        <div class="row" id="thirdrow">
+          <div class="col-lg-3"></div>
+          <div class="col-lg-6" id="sliderLocation">
+          <div class='session' id='sliderbar' style="width: 80%">
+              <h3>You are looking at the year <label id='activeYear'>1961</label></h3>
+              <input id='slider' class='row' type='range' min='1961' max='2014' step='1' value='1961' />
+          </div>
+        </div>
+        <div class="col-lg-3"></div>
         </div>
     <!-- <div class="slidecontainer"> -->
       <!-- <input type="range" min="1" max="100" value="50" class="slider" id="myRange"> -->
     <!-- </div> -->
 
-        <div class="row" id="thirdrow">
-            <div class="col-lg-6">
-                <select id="scatterDropdown">
+        <div class="row" id="fourthrow" style="height: 60%">
+            <div class="col-lg-4">
+              <div class="row" style="height: 15%"></div>
+              <div class="row">
+                <select id="scatterDropdown" style="float: none; margin: 0 auto;">
                     <option value="agriLand">Agricultural land (% of land area)</option>
                     <option value="assistance">Net official development assistance received (current US$)</option>
                     <option value="livestock">Livestock production index</option>
                     <option value="population">Population density (people per sq. km of land area)</option>
                     <option value="globInd">KOF Globalisation index</option>
                 </select>
-                <a type="button" class="btn btn-success" href="https://www.google.nl/search?biw=1163&bih=559&tbm=isch&sa=1&ei=sKwrW6C1GZGuUt-Nn1A&q=cute+kitten+pictures&oq=cute+kitten+pictures&gs_l=img.3..0i19k1l10.4884.7369.0.7559.12.9.0.3.3.0.86.589.9.9.0....0...1c.1.64.img..0.12.614...0j0i30k1j0i5i30k1j0i8i30k1.0.RW_upsGSSAI">Tired of these sad, discouraging facts? Click here!</a>
+              </div>
             </div>
-            <div class="col-lg-6" id="scatterColumn">
-                <div id="areaHere"></div>
+            <div class="col-lg-8" id="scatterLocation">
+              <div id="scatterHere"></div>
             </div>
+        </div>
+
+        <div class="row" id="fifthrow">
+          <div class="col-lg-8" id="scatterColumn">
+              <div id="areaHere"></div>
+          </div>
+          <div class="col-lg-4" id="areaLegendLocation">
+            <div id="areaLegendHere"></div>
+          </div>
+        </div>
+
+        <div class="row" id="sixthrow">
+            <a type="button" style="float: none; margin: 0 auto;" class="btn btn-success" href="https://www.google.nl/search?biw=1163&bih=559&tbm=isch&sa=1&ei=sKwrW6C1GZGuUt-Nn1A&q=cute+kitten+pictures&oq=cute+kitten+pictures&gs_l=img.3..0i19k1l10.4884.7369.0.7559.12.9.0.3.3.0.86.589.9.9.0....0...1c.1.64.img..0.12.614...0j0i30k1j0i5i30k1j0i8i30k1.0.RW_upsGSSAI">Tired of these sad, discouraging facts? Click here!</a>
         </div>
         </div>
     </body>
