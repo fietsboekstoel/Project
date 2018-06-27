@@ -13,18 +13,17 @@ function mapMaker(alldata) {
 
   startYear = 1961;
   selectedData = alldata[0][startYear];
+  console.log("hier dan", selectedData)
   // keyArray = Object.keys(selectedData)
     var basic_choropleth = new Datamap({
     element: document.getElementById("mapHere"),
     projection: "mercator",
+    height: 400,
     fills: {defaultFill: "#FFF0F2"},
             // fillColor: function(d) {
             //   return colorCode(d)
             // }},
     data: selectedData,
-    popupTemplate: function(geo, data) {
-      return "<div class='hoverinfo'>"+data.name+"<\div>";
-    },
     geographyConfig: {borderColor: '#DEDEDE',
                       highlightBorderWidth: 2,
                       // don't change color on mouse hover
@@ -32,7 +31,13 @@ function mapMaker(alldata) {
                       return geo['fillColor'] || "#FFF0F2";
                       },
                       // only change border
-                      highlightBorderColor: '#ffffff'}
+                      highlightBorderColor: '#ffffff',
+                      popupTemplate: function(geo, data) {
+                        console.log("data", data)
+                        var countryName = "<div class='hoverinfo'>" + geo.properties.name + ":" + "<\div>" + "<br>",
+                        footprintValue = "<div class='hoverinfo'>" + Math.round(data.value * 100) / 100 + "<\div>";
+                        return countryName + footprintValue;
+                      },}
     });
     d3.selectAll("path")
       .on('click', function() {
@@ -106,6 +111,31 @@ function mapMaker(alldata) {
     //
     //   });
     // console.log(basic_choropleth)
+
+    // add legend for no data
+    d3.select("#noDataLegend")
+    .append("svg")
+    .attr("class", "legendMapSvg")
+    .attr("height", "30px")
+
+    d3.select(".legendMapSvg")
+            .append("rect")
+            .attr("class", "legend")
+            .attr("y", 10)
+            .attr("x", 3)
+            // .attr("height", 15)
+            // .attr("width", 30)
+            .style("fill", "#FFF0F2");
+
+    d3.select(".legendMapSvg")
+            .append("text")
+            .attr("class", "mapLegendText")
+            .attr("y", 10 + 12)
+            .attr("x", 3 + 35)
+            .style("font", "15px")
+            // .style("font-weight", "bold")
+            .text("= No data available");
+
     sliderUpdate(basic_choropleth, alldata);
 };
 

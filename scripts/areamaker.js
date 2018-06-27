@@ -3,7 +3,7 @@ var codeData;
 
 function areaMaker(selectCode, codeCountryData) {
   codeData = codeCountryData
-  console.log(codeData)
+  console.log(codeCountryData)
   // selectCode = "NOR"
   if (selectCode == "null") {
     var selectCountry = "the world";
@@ -24,7 +24,7 @@ function areaMaker(selectCode, codeCountryData) {
     .attr("class", "title area")
     .text("Components of national ecological footprint of " + selectCountry + " over time")
 
-    var margin = {top: 100, right: 100, bottom: 100, left: 100},
+    var margin = {top: 50, right: 100, bottom: 100, left: 100},
         width = 960 - margin.left - margin.right,
         height = 500 - margin.top - margin.bottom;
 
@@ -46,7 +46,8 @@ function areaMaker(selectCode, codeCountryData) {
 
     var xAxis = d3.svg.axis()
         .scale(x)
-        .orient("bottom");
+        .orient("bottom")
+        .tickFormat(d3.format("d"));
 
     var yAxis = d3.svg.axis()
         .scale(y)
@@ -269,10 +270,17 @@ function areaUpdate(selectCode) {
     // verwijder vorige svg inhoud
     d3.select(".areaSvg")
          .remove()
+    d3.select(".title.area")
+      .remove()
     areaMaker(selectCode, codeData);
 
   d3.select(".worldButton")
-    .on("click", function() {areaUpdate("null")});
+    .on("click", function() {
+      			$("html, body").animate({
+      		        scrollTop: $("#fourthrow").offset().top -
+      		        		$("nav").outerHeight()}, "slow");
+
+      areaUpdate("null")});
 };
 
 
@@ -390,6 +398,8 @@ d3.select(".legendAreaGraph")
       .attr("class", "legend total")
       .attr("y", totalAreaHeight / 14 * 7)
       .attr("x", legendX)
+      // .attr("height", "15px")
+      // .attr("width", "30px")
       .style("fill", "black");
 
     d3.select(".legendAreaGraph")

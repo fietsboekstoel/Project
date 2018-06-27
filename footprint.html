@@ -31,6 +31,8 @@ HTML file (containing necessary files, hyperlink to original data and buttons)
         <!-- file needed for use of bootstrap -->
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
         <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
         <script src="scripts/datamaps.world.min.js"></script>
@@ -71,9 +73,12 @@ HTML file (containing necessary files, hyperlink to original data and buttons)
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
                         <a class="nav-link worldButton" href="#">View stacked area graph for whole world <span class="sr-only">(current)</span></a>
+                        <a class="nav-link scatterButton" href="#">Explore relation footprint with other variables <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Data source</a>
+                        <a class="nav-link" href="#">Source of footprint data</a>
+                        <a class="nav-link" href="#">Source of globalisation data</a>
+                        <a class="nav-link" href="#">Source of other data</a>
                     </li>
                 </ul>
             </div>
@@ -83,38 +88,52 @@ HTML file (containing necessary files, hyperlink to original data and buttons)
 <!-- hier staat nu niks meer in dus namen aanpassen? -->
         <!-- </div> -->
 
-        <div class="row h-50" id="secondrow">
+        <div class="row h-50" id="firstrow">
             <div class="col-lg-6" id="mapLocation">
               <div id="mapHere"></div>
             </div>
             <div class="col-lg-6">
-              <div id="textRow" style="height: 75%">
-                <p>Hier komt tekst/info</p>
+              <div id="textRow" style="height: 70%">
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
               </div>
-              <div id="mapLegendRow" style="height: 25%">
+              <div id="mapLegendRow" style="height: 30%">
+                <div id="noDataLegend"></div>
+
                 <div class='session'>
-                    <p class="mapLegendText">Color code of number of earths:<br> Green / <1 = reserve Black / >1 = deficit)</p>
+                    <p class="mapLegendText">Color code for number of earths required:</p>
                     <div class='row colors'></div>
-                    <div class='row labels'>
-                        <div class='label'>0</div>
-                        <div class='label'>1</div>
-                        <div class='label'>3</div>
-                        <div class='label'>5</div>
-                        <div class='label'>7</div>
-                        <div class='label'>9</div>
+                    <div class='row labels map'>
+                        <div class='label mapLegend zero'>0</div>
+                        <div class='label mapLegend'>1</div>
+                        <div class='label mapLegend three'>3</div>
+                        <div class='label mapLegend multiple'>5</div>
+                        <div class='label mapLegend multiple'>7</div>
+                        <div class='label mapLegend multiple'>9</div>
+                        <div class='label mapLegend multiple'>11</div>
                     </div>
                 </div>
               </div>
             </div>
         </div>
-        <div class="row" id="thirdrow">
+        <div class="row" id="secondrow" style="height: 250px;">
           <div class="col-lg-3"></div>
           <div class="col-lg-6" id="sliderLocation">
-          <div class='session' id='sliderbar' style="width: 80%">
+          <div id="centerVertically">
+          <div class='session' id='sliderbar' style="width: 80%;">
               <h3>You are looking at the year <label id='activeYear'>1961</label></h3>
               <input id='slider' class='row' type='range' min='1961' max='2014' step='1' value='1961' />
           </div>
+          <div class='row labels slide'>
+              <div class='label slide'>1961</div>
+              <div class='label slide'> </div>
+              <div class='label slide'> </div>
+              <div class='label slide'> </div>
+              <div class='label slide'> </div>
+              <div class="label slide"> </div>
+              <div class="label slide"> </div>
+              <div class='label slide'>2014</div>
+          </div>
+        </div>
         </div>
         <div class="col-lg-3"></div>
         </div>
@@ -122,26 +141,33 @@ HTML file (containing necessary files, hyperlink to original data and buttons)
       <!-- <input type="range" min="1" max="100" value="50" class="slider" id="myRange"> -->
     <!-- </div> -->
 
-        <div class="row" id="fourthrow" style="height: 60%">
-            <div class="col-lg-4">
+        <div class="row" id="thirdrow" style="height: 60%">
+            <!-- <div class="col-lg-4">
               <div class="row" style="height: 15%"></div>
               <div class="row">
-                <select id="scatterDropdown" style="float: none; margin: 0 auto;">
-                    <option value="agriLand">Agricultural land (% of land area)</option>
-                    <option value="assistance">Net official development assistance received (current US$)</option>
-                    <option value="livestock">Livestock production index</option>
-                    <option value="population">Population density (people per sq. km of land area)</option>
-                    <option value="globInd">KOF Globalisation index</option>
-                </select>
+
               </div>
             </div>
-            <div class="col-lg-8" id="scatterLocation">
-              <div id="scatterHere"></div>
-            </div>
+            <div class="col-lg-8" id="scatterLocation"> -->
+              <div id="scatterHere" style="height: 50%; width: 100%"></div>
+            <!-- </div> -->
+        </div>
+
+        <div class="row" id="fourthrow" style="height: 70px;">
+          <div class="col-lg-7"></div>
+          <div class="col-lg-5">
+          <select id="scatterDropdown" style="float: none; margin: 0 auto;">
+              <option value="agriLand">Agricultural land (% of land area)</option>
+              <!-- <option value="assistance">Net official development assistance received (current US$)</option> -->
+              <option value="livestock">Livestock production index</option>
+              <option value="population">Population density (people per sq. km of land area)</option>
+              <option value="globInd">KOF Globalisation index (data available for 1970-2014)</option>
+          </select>
+        </div>
         </div>
 
         <div class="row" id="fifthrow">
-          <div class="col-lg-8" id="scatterColumn">
+          <div class="col-lg-8" id="areaColumn">
               <div id="areaHere"></div>
           </div>
           <div class="col-lg-4" id="areaLegendLocation">

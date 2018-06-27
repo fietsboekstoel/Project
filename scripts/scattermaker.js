@@ -196,8 +196,8 @@ function drawScatter(scatterArrays, scatterData, selection, year) {
     // consider size of svg and margin to place axis labels in within svg
     var totalScatterWidth = d3.select("#scatterHere")[0][0].clientWidth;
     // console.log(totalScatterWidth)
-    totalScatterHeight = 800;
-    scatterMargin = {left: 150, top: 10, right: 50, bottom: 100};
+    totalScatterHeight = 300;
+    scatterMargin = {left: 50, top: 10, right: 50, bottom: 40};
 
     // define variables for width and height of graph (rather than the svg)
     var scatterWidth = totalScatterWidth - scatterMargin.left - scatterMargin.right;
@@ -214,17 +214,19 @@ function drawScatter(scatterArrays, scatterData, selection, year) {
 
 
     // use the right minimal and maximal value based on data (birds/mammals)
-    var xDomainSelection = [calculatedMinMax[0], calculatedMinMax[1]];
     var yDomainSelection = [calculatedMinMax[3], calculatedMinMax[2]];
+    var xDomainSelection = [calculatedMinMax[0], calculatedMinMax[1]];
 
     // functions for scaling x and y values from data to graph area
     yScale = d3.scale.linear()
                          .domain(yDomainSelection)
-                         .range([scatterMargin.top, totalScatterHeight - scatterMargin.bottom]);
+                         .range([scatterMargin.top, totalScatterHeight - scatterMargin.bottom])
+                         .nice();
 
     xScale = d3.scale.linear()
                          .domain(xDomainSelection)
                          .range([0, scatterWidth])
+                         .nice();
 
     // create and draw y and x axis
     yAxis = d3.svg.axis()
@@ -246,22 +248,32 @@ function drawScatter(scatterArrays, scatterData, selection, year) {
     tooltip = d3.tip()
                     .attr('class', 'tooltip')
                     .html(function(d) {
-                      // console.log("d:", d)
+                      // console.log("d:", d
                       year = currentYear;
-                      var tooltipText = "<strong>Country: </strong><span>" + scatterData[year-1961][year][d].countryName + "</span>" + "<br>",
-                      tooltipFootprint = "<strong>Ecological footprint: </strong><span>" + scatterData[year - 1961][year][d].footprint + "</span>" + "<br>",
-                      tooltipAgriLand = "<strong>Agricultural land (%): </strong><span>" + scatterData[year - 1961][year][d].agriLand + "</span>" + "<br>",
-                      tooltipAssistance = "<strong>Assistance received: </strong><span>" + scatterData[year - 1961][year][d].assistance + "</span>" + "<br>",
-                      tooltipLivestock = "<strong>Livestock production: </strong><span>" + scatterData[year - 1961][year][d].livestock + "</span>" + "<br>",
-                      tooltipPopulation = "<strong>Population density: </strong><span>" + scatterData[year - 1961][year][d].population + "</span>" + "<br>",
-                      tooltipGlobInd = "<strong>Globalisation index: </strong><span>" + scatterData[year - 1961][year][d].globInd + "</span>" + "<br>";
+                      var tooltipFootprint = Math.round(scatterData[year - 1961][year][d].footprint * 100) / 100,
+                      tooltipAgriLand = Math.round(scatterData[year - 1961][year][d].agriLand * 100) / 100,
+                      tooltipLivestock = Math.round(scatterData[year - 1961][year][d].livestock * 100) / 100,
+                      tooltipPopulation = Math.round(scatterData[year - 1961][year][d].population * 100) / 100,
+                      tooltipGlobInd = Math.round(scatterData[year - 1961][year][d].globInd * 100) / 100;
+                      var tooltipList = [tooltipFootprint, tooltipAgriLand, tooltipLivestock, tooltipPopulation, tooltipGlobInd];
+                      for (i = 0; i < tooltipList.length; i++) {
+                        if (tooltipList[i] == 0) {
+                          tooltipList[i] = "unknown";
+                        }
+                      };
+
+                      var tooltipText = "<strong>Country: </strong><span>" + scatterData[year-1961][year][d].countryName + "</span>" + "<br>";
+                      tooltipFootprint = "<strong>Ecological footprint: </strong><span>" + tooltipList[0] + "</span>" + "<br>";
+                      tooltipAgriLand = "<strong>Agricultural land (%): </strong><span>" + tooltipList[1] + "</span>" + "<br>";
+                      // tooltipAssistance = "<strong>Assistance received: </strong><span>" + scatterData[year - 1961][year][d].assistance + "</span>" + "<br>",
+                      tooltipLivestock = "<strong>Livestock production: </strong><span>" + tooltipList[2] + "</span>" + "<br>";
+                      tooltipPopulation = "<strong>Population density: </strong><span>" + tooltipList[3] + "</span>" + "<br>";
+                      tooltipGlobInd = "<strong>Globalisation index: </strong><span>" + tooltipList[4] + "</span>" + "<br>";
 
 
 
-
-
-
-                      return tooltipText + tooltipFootprint + tooltipAgriLand + tooltipAssistance + tooltipLivestock + tooltipPopulation + tooltipGlobInd;
+                      // + tooltipAssistance
+                      return tooltipText + tooltipFootprint + tooltipAgriLand + tooltipLivestock + tooltipPopulation + tooltipGlobInd;
                     });
     svg.call(tooltip);
    //
@@ -275,15 +287,22 @@ function drawScatter(scatterArrays, scatterData, selection, year) {
        .attr("id", function(d) {
          return scatterData[year-1961][year][d]["countryCode"]
        })
-       .attr("cx", function(d) {
-         var xCor = scatterData[year-1961][year][d]["footprint"];
-          return xScale(xCor);
-        })
        .attr("cy", function(d) {
-         var yCor = scatterData[year-1961][year][d][selection];
+         var yCor = scatterData[year-1961][year][d]["footprint"];
           return yScale(yCor);
         })
-       .attr("r", 4)
+       .attr("cx", function(d) {
+         var xCor = scatterData[year-1961][year][d][selection];
+          return xScale(xCor);
+        })
+       .attr("r", function(d) {
+         if (scatterData[year - 1961][year][d][selection] == 0) {
+           return 0;
+         }
+         else {
+           return 4;
+         }
+        })
        .on('mouseover', tooltip.show)
        .on('mouseout', tooltip.hide)
        .on('click', function() {areaUpdate(this.id, codeData)});
@@ -298,16 +317,16 @@ function drawScatter(scatterArrays, scatterData, selection, year) {
        .attr("class", "y axisLabel")
        .attr("transform", "rotate(-90)")
        .attr("y", 0 - scatterMargin.left)
-       .attr("x", 0 - totalScatterHeight / 1.3)
+       .attr("x", 0 - totalScatterHeight / 1.1)
        .attr("dy", "1em")
-       .text("Agricultural land (% of land area)");
-   //
-    // add x-axis label
-    svg.append("text")
-       .attr("class", "x axisLabel")
-       .attr("y", totalScatterHeight - 50)
-       .attr("x", totalScatterWidth / 8)
        .text("Ecological footprint (number of earths)");
+   //
+    // // add x-axis label
+    // svg.append("text")
+    //    .attr("class", "x axisLabel")
+    //    .attr("y", totalScatterHeight - 50)
+    //    .attr("x", totalScatterWidth / 8)
+    //    .text("Agricultural land (% of land area)");
 
 
 
@@ -418,6 +437,12 @@ function drawScatter(scatterArrays, scatterData, selection, year) {
    //   };
     scatterSliderUpdate();
     scatterOptions();
+    d3.select(".scatterButton")
+      .on("click", function() {
+              $("html, body").animate({
+                    scrollTop: $("#secondrow").offset().top -
+                        $("nav").outerHeight()}, "slow");
+        });
   };
 
 
@@ -501,42 +526,42 @@ function calculateMinMax(scatterData, selection) {
     if (selection == "agriLand") {
         // var minValueY = Math.min.apply(Math, scatterArrays[0])
         // var maxValueY = Math.ceil(Math.max.apply(Math, scatterArrays[0]) / 10) * 10
-        var minValueY = minAgr;
-        var maxValueY = maxAgr;
+        var minValueX = minAgr;
+        var maxValueX = maxAgr;
     }
 
     else if (selection == "assistance") {
         // var minValueY = Math.min.apply(Math, scatterArrays[1])
         // var maxValueY = Math.max.apply(Math, scatterArrays[1])
-        var minValueY = minAss;
-        var maxValueY = maxAss;
+        var minValueX = minAss;
+        var maxValueX = maxAss;
     }
 
     else if (selection == "livestock") {
         // var minValueY = Math.min.apply(Math, scatterArrays[2])
         // var maxValueY = Math.max.apply(Math, scatterArrays[2])
-        var minValueY = minLiv;
-        var maxValueY = maxLiv;
+        var minValueX = minLiv;
+        var maxValueX = maxLiv;
     }
 
     else if (selection == "globInd") {
         // var minValueY = Math.min.apply(Math, scatterArrays[3])
         // var maxValueY = Math.max.apply(Math, scatterArrays[3])
-        var minValueY = 0;// minGlo;
-        var maxValueY = maxGlo;
+        var minValueX = 0;// minGlo;
+        var maxValueX = maxGlo;
     }
     else if (selection == "population") {
         // var minValueY = Math.min.apply(Math, scatterArrays[4])
         // var maxValueY = Math.max.apply(Math, scatterArrays[4])
-        var minValueY = minPop;
-        var maxValueY = maxPop;
+        var minValueX = minPop;
+        var maxValueX = maxPop;
     }
 
 // om as niet te veranderen: gehardcode?
     // var minValueX = Math.min.apply(Math, scatterArrays[5])
     // var maxValueX = Math.ceil(Math.max.apply(Math, scatterArrays[5]))
-    var minValueX = minFoo; // 0;
-    var maxValueX = maxFoo; // 11;
+    var minValueY = minFoo; // 0;
+    var maxValueY = maxFoo; // 11;
     // console.log(maxValueX)
 
     // console.log(minValueAgri, minValueAssist, minValueLivestock, minValueGlobind, minValuePopulation, minValueFootprint)
@@ -582,7 +607,8 @@ function updateScatter(selection, year, scatterData) {
 
     calculateNewDomains = calculateMinMax(scatterData, selection);
     // console.log(calculateNewDomains)
-    yScale.domain([calculateNewDomains[3], calculateNewDomains[2]]);
+    xScale.domain([calculateNewDomains[0], calculateNewDomains[1]])
+          .nice();
     // xScale.domain([calculateNewDomains[3], calculateNewDomains[2]]);
     if (selection == "assistance") {
       yDomainSelection = [calculateNewDomains[3], calculateNewDomains[2]]
@@ -614,29 +640,25 @@ function updateScatter(selection, year, scatterData) {
        updateSvg
        .transition()
        .duration(1000)
-       .attr("cx", function(d) {
-            var xCor = +scatterData[year-1961][year][d]["footprint"];
-            // console.log(xCor)
-            return xScale(xCor);
-        })
        .attr("cy", function(d) {
-           var yCor = scatterData[year-1961][year][d][selection];
+            var yCor = +scatterData[year-1961][year][d]["footprint"];
+            // console.log(xCor)
+            return yScale(yCor);
+        })
+       .attr("cx", function(d) {
+           var xCor = scatterData[year-1961][year][d][selection];
            // console.log(yCor)
-           return yScale(yCor);
+           return xScale(xCor);
         })
        .attr("r", function(d) {
-         if (scatterData[year - 1961][year][d]["globInd"] == null || scatterData[year - 1961][year][d]["globInd"] == "") {
-           if (selection == "globInd") {
-             return 0;
-           }
+         console.log(scatterData[year - 1961][year][d][selection])
+         if (scatterData[year - 1961][year][d][selection] == 0 || scatterData[year - 1961][year][d][selection] == null || scatterData[year - 1961][year][d][selection] == "") {
+            return 0;
+          }
            else {
              return 4;
            }
-         }
-         else {
-           return 4;
-         }
-       })
+       });
 
        // console.log(svg.selectAll(".dot"))
 
@@ -689,8 +711,9 @@ function updateScatter(selection, year, scatterData) {
     // console.log(svg.select(".y.axis"))
     // Update Y Axis
     svg.select(".y.axis")
-       .transition();
-       // .duration(1000)
+       .transition()
+       .duration(1000);
+
        svg.select(".y.axis")
        .call(yAxis);
 
@@ -726,7 +749,7 @@ function updateScatter(selection, year, scatterData) {
     // add y-axis label
     // console.log(svg.select(".y.axisLabel"))
 
-    svg.selectAll(".y.axisLabel")
+    svg.selectAll(".x.axisLabel")
     // .attr("transform", "rotate(-90)")
     // .attr("y", 0 - 0.7 * scatterMargin.left)
     // .attr("x", 0 - totalScatterHeight / 2)

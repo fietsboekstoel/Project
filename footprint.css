@@ -37,9 +37,13 @@
     cursor: pointer;
 }
 
+#centerVertically {
+  transform: translateY(50%);
+}
+
 
 .session {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .row {
@@ -54,11 +58,28 @@
 }
 
 .label {
-  width: 15%;
+  width: 10%;
   display: inline-block;
   text-align: center;
 }
 
+.label.mapLegend.zero {
+  width: 20%;
+  text-align: left;
+}
+
+.label.mapLegend.three {
+  width: 10%;
+  text-align: right;
+}
+.label.mapLegend.multiple {
+  width: 15%;
+  text-align: right;
+}
+
+/* .label.mapLegend.multiple {
+  width: 16%;
+} */
 
 .axis path,
 .axis line {
@@ -69,8 +90,8 @@
 
 .tooltip {
   position: absolute;
-  width: 280px;
-  height: 150px;
+  width: 210px;
+  height: 135px;
   padding: 2px;
   font: 14px;
   background: lightgrey;
@@ -79,10 +100,14 @@
   pointer-events: none;
 }
 
-#mapHere {
-   height: 70vh;
+/* .datamap svg {
+  height: 500;
+} */
+
+.graph {
+   height: 50%;
    /* width: 700px; */
-}
+ }
 
 .row {
   margin-left: 0;
@@ -101,16 +126,30 @@ body, .session {
 }
 
 #scatterDropdown {
-  width: 80%;
+  width: 90%;
 }
 
-.mapLegendText {
+.mapLegendText, .hoverinfo {
   font-weight: bold;
 }
 
-.legend {
+.legend, rect {
   width: 30px;
   height: 15px;
   stroke: black;
   stroke-width: 1;
+}
+
+
+h2 {
+  font-size: 20px;
+}
+h3 {
+  font-size: 20px;
+}
+
+.title, h3 {
+  text-align: center;
+  /* float: none;
+  margin: 0 auto; */
 }

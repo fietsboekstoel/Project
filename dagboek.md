@@ -121,31 +121,35 @@
 - geen data mededeling voor landen die uberhaupt geen data hebben
 - rest van to do lijst
 
+## 27 juni 2018:
+### Gedaan:
+- missing data gecoverd
+- legenda's aangevuld
+- tooltips aangepast
+- y en x as omgedraaid
+- assen mooier gemaakt
+- assistance weggedaan als variabele
+- titels toegevoegd
+- assen toegevoegd
+- komma's uit de tick labels
+- lay out pagina verbeterd
+
+### Gepland:
+- rest van de to-do list
+
 ## To do:
 ### Belangrijk:
--	missing data opvangen!!
+-	bug verkeerd land eruit
 
 ###	Map:
--	Locatie
--	Kleurfunctie/achtergrondkleur beslissen
--	legenda voor "no data available"
--	tooltip aanvullen
 
 ###	Scatter:
--	Y values correct
--	Y-as label locatie
--	Assen + 1 vanwege ticks (hardcoden?)
--	Loga as?
--	Tooltip aanvullen & locatie (en afronden)
 -	Lijntjes bij tooltip?
 -	scatterArrays functie eruit?
--	Negatieve waarden voor development assistance (eruit?)
-- y en x as omwisselen voor beeld op pagina
+
 
 ###	Line/stacked area:
--	Titel
 -	Legenda aanpassen als totaal splitsen niet meer lukt
--	Komma’s uit de tic labels
 -	Updatefunctie verbeteren
 -	Wanneer geen data alleen totaal aangeven
 
