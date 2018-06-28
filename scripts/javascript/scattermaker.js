@@ -1,6 +1,6 @@
 // HEADER MAKEN
 
-// introducing global variables
+// introducing global variables for communication between multiple functions
 var xScale, yScale, xAxis, yAxis, tooltip, svg, currentSelection, scatterArrays,
 scatterData, scatterMargin, totalScatterHeight, codeData;
 
@@ -98,11 +98,11 @@ function drawScatter(scatterArrays, scatterData, selection, year) {
                     year = currentYear;
 
                     // round off values to two decimal points
-                    var tooltipFootprint = Math.round(scatterData[year - 1961][year][d].footprint * 100) / 100,
-                    tooltipAgriLand = Math.round(scatterData[year - 1961][year][d].agriLand * 100) / 100,
-                    tooltipLivestock = Math.round(scatterData[year - 1961][year][d].livestock * 100) / 100,
-                    tooltipPopulation = Math.round(scatterData[year - 1961][year][d].population * 100) / 100,
-                    tooltipGlobInd = Math.round(scatterData[year - 1961][year][d].globInd * 100) / 100;
+                    var tooltipFootprint = Math.round(scatterData[year - startYear][year][d].footprint * 100) / 100,
+                    tooltipAgriLand = Math.round(scatterData[year - startYear][year][d].agriLand * 100) / 100,
+                    tooltipLivestock = Math.round(scatterData[year - startYear][year][d].livestock * 100) / 100,
+                    tooltipPopulation = Math.round(scatterData[year - startYear][year][d].population * 100) / 100,
+                    tooltipGlobInd = Math.round(scatterData[year - startYear][year][d].globInd * 100) / 100;
                     var tooltipList = [tooltipFootprint, tooltipAgriLand, tooltipLivestock, tooltipPopulation, tooltipGlobInd];
 
                     // set missing data points to "unknown"
@@ -112,7 +112,7 @@ function drawScatter(scatterArrays, scatterData, selection, year) {
                         }
                       };
 
-                    var tooltipText = "<strong>Country: </strong><span>" + scatterData[year - 1961][year][d].countryName + "</span>" + "<br>";
+                    var tooltipText = "<strong>Country: </strong><span>" + scatterData[year - startYear][year][d].countryName + "</span>" + "<br>";
                     tooltipFootprint = "<strong>Ecological footprint: </strong><span>" + tooltipList[0] + "</span>" + "<br>";
                     tooltipAgriLand = "<strong>Agricultural land (%): </strong><span>" + tooltipList[1] + "</span>" + "<br>";
                     tooltipLivestock = "<strong>Livestock production: </strong><span>" + tooltipList[2] + "</span>" + "<br>";
@@ -126,25 +126,25 @@ function drawScatter(scatterArrays, scatterData, selection, year) {
 
     // draw data points of scatter plot based on data of selected x- variable
     svg.selectAll("circle")
-       .data(Object.keys(scatterData[year - 1961][year]))
+       .data(Object.keys(scatterData[year - startYear][year]))
        .enter()
        .append("circle")
        .attr("class", "dot")
        .attr("id", function(d) {
-          return scatterData[year - 1961][year][d]["countryCode"]
+          return scatterData[year - startYear][year][d]["countryCode"]
        })
        .attr("cy", function(d) {
-          var yCor = scatterData[year - 1961][year][d]["footprint"];
+          var yCor = scatterData[year - startYear][year][d]["footprint"];
           return yScale(yCor);
         })
        .attr("cx", function(d) {
-          var xCor = scatterData[year - 1961][year][d][selection];
+          var xCor = scatterData[year - startYear][year][d][selection];
           return xScale(xCor);
         })
        .attr("r", function(d) {
 
           // leave data points with unknown values out of plot
-          if (scatterData[year - 1961][year][d][selection] == 0) {
+          if (scatterData[year - startYear][year][d][selection] == 0) {
               return 0;
           }
           else {
@@ -217,7 +217,7 @@ function calculateMinMax(scatterData, selection) {
 
     // iterates over all years in dataset
     for (i = 0; i < scatterData.length; i++) {
-        var yearToCheck = scatterData[i][i + 1961];
+        var yearToCheck = scatterData[i][i + startYear];
         countryCodes = Object.keys(yearToCheck)
 
         // iterates over all countries in dataset
@@ -347,20 +347,20 @@ function updateScatter(selection, year, scatterData) {
 
     // rescale data points
     var updateSvg = svg.selectAll(".dot")
-       .data(Object.keys(scatterData[year - 1961][year]));
+       .data(Object.keys(scatterData[year - startYear][year]));
 
     updateSvg.transition()
              .duration(1000)
              .attr("cy", function(d) {
-                var yCor = +scatterData[year - 1961][year][d]["footprint"];
+                var yCor = +scatterData[year - startYear][year][d]["footprint"];
                 return yScale(yCor);
               })
              .attr("cx", function(d) {
-                var xCor = scatterData[year - 1961][year][d][selection];
+                var xCor = scatterData[year - startYear][year][d][selection];
                 return xScale(xCor);
               })
              .attr("r", function(d) {
-                if (scatterData[year - 1961][year][d][selection] == 0 || scatterData[year - 1961][year][d][selection] == null || scatterData[year - 1961][year][d][selection] == "") {
+                if (scatterData[year - startYear][year][d][selection] == 0 || scatterData[year - startYear][year][d][selection] == null || scatterData[year - startYear][year][d][selection] == "") {
                     return 0;
                 }
                 else {

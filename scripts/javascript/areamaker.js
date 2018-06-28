@@ -32,8 +32,8 @@ function areaMaker(selectCode, codeCountryData) {
 
     // consider margins on svg to place axis labels in
     var margin = {top: 50, right: 100, bottom: 100, left: 100},
-    width = 960 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+        width = 960 - margin.left - margin.right,
+        height = 500 - margin.top - margin.bottom;
 
     // initiate scale function for x-axis
     var x = d3.scale.linear()

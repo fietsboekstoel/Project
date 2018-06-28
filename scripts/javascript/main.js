@@ -20,13 +20,13 @@ window.onload = function(){
         var globind = response[1];
         var footprint = response[2];
         var countryCodes = response[3];
+
         var readyData = dataTransform(extra, globind, footprint);
         var mapData = readyData[0];
         var scatterData = readyData[1];
 
         // start all visualisations at startyear 1961
         currentYear = 1961;
-        // var correctYearDict = currentYear - 1961;
 
         // draw map, scatter plot, stacked area graph and legends
         mapMaker(mapData);
