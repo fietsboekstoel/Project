@@ -203,8 +203,8 @@ function drawScatter(scatterArrays, scatterData, selection, year) {
     d3.select(".scatterButton")
       .on("click", function() {
           $("html, body").animate({
-              scrollTop: $("#secondrow").offset().top -
-                          $("nav").outerHeight()}, "slow");
+              scrollTop: $("#thirdrow").offset().top -
+                          $("nav").innerHeight()}, "slow");
       });
     };
 
