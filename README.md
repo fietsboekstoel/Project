@@ -1,4 +1,4 @@
-[Pages](https://fietsboekstoel.github.io/Project/)
+[Pages (bekijk mijn pagina!)](https://fietsboekstoel.github.io/Project/)
 
 # Rebecca's Programmeerproject
 
