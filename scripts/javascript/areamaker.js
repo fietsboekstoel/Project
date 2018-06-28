@@ -1,4 +1,11 @@
-// HEADER MAKEN
+/**
+* Rebecca de Feijter - 10639918
+* Programmeerproject
+*
+* - areaMaker: draws stacked area graph
+* - areaUpdate: removes current area graph and calls areaMaker again
+* - areaLegendMaker: draws legend for stacked area graph
+*/
 
 // based on http://bl.ocks.org/mhkeller #muchos gracias
 var codeData;

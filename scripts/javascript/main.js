@@ -1,4 +1,12 @@
-// HEADER MAKEN
+/**
+* Rebecca de Feijter - 10639918
+*    Programmeerproject
+*
+* - window.onload function
+* - transformData: function for organizing data returned by queue and calling
+*   functions for drawing visualisations
+*/
+
 var currentYear;
 
 window.onload = function(){

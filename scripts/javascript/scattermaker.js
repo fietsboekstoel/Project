@@ -1,4 +1,17 @@
-// HEADER MAKEN
+/**
+* Rebecca de Feijter - 10639918
+* Programmeerproject
+*
+* - scatterMaker: calls to draw initial scatter plot for first year in dataset
+*   with agricultural land as x-axis variable.
+* - drawScatter: actually draws first complete scatter plot
+* - calculateMinMax: calculates suitable domain based on selected x-axis variable
+* - scatterOptions: calls to update scatter plot based on change in selected
+*   variable from dropdown menu
+* - scatterSliderUpdate: calls to update scatter plot based on change in
+*   selected year from slider
+* - updateScatter: actually updates x-axis, datapoints and title of scatter plot
+*/
 
 // introducing global variables for communication between multiple functions
 var xScale, yScale, xAxis, yAxis, tooltip, svg, currentSelection, scatterArrays,
@@ -353,7 +366,6 @@ function updateScatter(selection, year, scatterData) {
     updateSvg.transition()
              .duration(1000)
              .attr("id", function(d) {
-               console.log(scatterData[year - startYear][year], d)
                 return scatterData[year - startYear][year][d]["countryCode"]
              })
              .attr("cy", function(d) {

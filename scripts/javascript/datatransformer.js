@@ -1,4 +1,10 @@
-// HEADER maken
+/**
+* Rebecca de Feijter - 10639918
+* Programmeerproject
+*
+* - dataTransform: converts standars JSONs (converted from CSV) to more
+*   practical dictionaries
+*/
 
 /** Function reorganises JSONs to dicts that are suitable for the world map
 *   visualisation and the scatter plot visualisation.

@@ -137,43 +137,7 @@
 ### Gepland:
 - rest van de to-do list
 
-## To do:
-### Belangrijk:
--	bug verkeerd land eruit
-
-###	Map:
-
-###	Scatter:
--	Lijntjes bij tooltip?
--	scatterArrays functie eruit?
-
-
-###	Line/stacked area:
--	Legenda aanpassen als totaal splitsen niet meer lukt
--	Updatefunctie verbeteren
--	Wanneer geen data alleen totaal aangeven
-
-###	Verder:
-- outliers weghalen?
--	Dingen “waar nodig” doen met switch
--	Slider mooier
--	Alles mooier
--	Tabs?
--	Data sources toevoegen
--	Filenames github
--	Informatieve tekst toevoegen
-1. relevantie
-2. gebruikte concepten
-3. eenheden
 
 Planning donderdag:
 1 uur no data error en totaalvalue splitsen
-1 uur lay out verbeteren (navbar, scroll, afbeeldingen)
-1 uur info + buttons
 1 uur verdere Dingen (crosshairs, map tooltip, onhover opacity veranderen in onclick kleur met herstellen bij nieuwe klikken of updaten (+ error met no data for this country for this variable and/or year) tooltip/crosshairs stackes area)
-1 uur report
-1 uur github etc
-
-Vragen:
-- bug Bahamas
-- tooltip map geen data

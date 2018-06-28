@@ -1,5 +1,12 @@
-/* HEADER MAKEN */
+/*
+* Rebecca de Feijter - 10639918
+* Programmeerproject
+*
+* CSS Style sheet
+*/
 
+
+/* Style elements for slider */
 .slidecontainer {
     width: 80%;
     position: center;
@@ -44,14 +51,10 @@
 }
 
 
+/* style for legends */
 .session {
     margin-bottom: 10px;
 }
-
-.row {
-    width: 100%;
-}
-
 .colors {
     background: linear-gradient(to right, green, white, #999999, #323232, black);
     margin-bottom: 5px;
@@ -79,6 +82,19 @@
     text-align: right;
 }
 
+.mapLegendText, .hoverinfo {
+    font-weight: bold;
+}
+
+.legend, rect {
+    width: 30px;
+    height: 15px;
+    stroke: black;
+    stroke-width: 1;
+}
+
+
+/* style for scatter plot */
 .axis path,
 .axis line {
     fill : none;
@@ -102,10 +118,6 @@
     height: 50%;
  }
 
-.row {
-    margin-left: 0;
-}
-
 .dot {
     fill: black;
 }
@@ -114,26 +126,14 @@
     opacity: 0.5;
 }
 
-body, .session {
-    background-color: #FFF0F2;
-}
 
+/* style for dropdown */
 #scatterDropdown {
     width: 90%;
 }
 
-.mapLegendText, .hoverinfo {
-    font-weight: bold;
-}
 
-.legend, rect {
-    width: 30px;
-    height: 15px;
-    stroke: black;
-    stroke-width: 1;
-}
-
-
+/* style for text */
 h2 {
     font-size: 20px;
 }
@@ -147,4 +147,15 @@ h3 {
 
 #info {
     font-size: 12px;
+}
+
+
+/* general stuff */
+.row {
+    width: 100%;
+    margin-left: 0;
+}
+
+body, .session {
+    background-color: #FFF0F2;
 }

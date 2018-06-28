@@ -1,4 +1,12 @@
-// HEADER MAKEN
+/**
+* Rebecca de Feijter - 10639918
+* Programmeerproject
+*
+* - mapMaker: draws initial color coded map for first year in dataset (by means of datamaps)
+* - colorCode: converts footprint value to color value for map
+* - sliderUpdate: calls to update map with correct data selection when slider is used
+* - updateMap: updates values and color coding of map
+*/
 
 
 /** Function draws world map with countries colored based on national ecological
@@ -104,17 +112,6 @@ function mapMaker(alldata) {
 };
 
 
-/** Function calls to update map and adjusts slider text when slider is used.
-*/
-function sliderUpdate(existingMap, alldata) {
-    document.getElementById("slider").addEventListener("input", function(e) {
-        var requestedYear = parseInt(e.target.value);
-        updateMap(existingMap, requestedYear, alldata);
-        document.getElementById("activeYear").innerText = requestedYear;
-    });
-};
-
-
 /** Function determines color code of map countries based on footprint values.
 */
 function colorCode(value) {
@@ -125,6 +122,18 @@ function colorCode(value) {
     var colorValue = colorScale(value);
     return colorValue;
 };
+
+
+/** Function calls to update map and adjusts slider text when slider is used.
+*/
+function sliderUpdate(existingMap, alldata) {
+    document.getElementById("slider").addEventListener("input", function(e) {
+        var requestedYear = parseInt(e.target.value);
+        updateMap(existingMap, requestedYear, alldata);
+        document.getElementById("activeYear").innerText = requestedYear;
+    });
+};
+
 
 /** Function updates colors of map countries based on year selected in slider
 *   using a readymade function of Datamaps.
