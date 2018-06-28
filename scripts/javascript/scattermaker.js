@@ -159,6 +159,7 @@ function drawScatter(scatterArrays, scatterData, selection, year) {
           $("html, body").animate({
                 scrollTop: $("#sixthrow").offset().top -
                     $("nav").outerHeight()}, "slow");
+
           areaUpdate(this.id, codeData);
           });
 
@@ -351,6 +352,10 @@ function updateScatter(selection, year, scatterData) {
 
     updateSvg.transition()
              .duration(1000)
+             .attr("id", function(d) {
+               console.log(scatterData[year - startYear][year], d)
+                return scatterData[year - startYear][year][d]["countryCode"]
+             })
              .attr("cy", function(d) {
                 var yCor = +scatterData[year - startYear][year][d]["footprint"];
                 return yScale(yCor);

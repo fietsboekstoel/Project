@@ -15,6 +15,7 @@ function mapMaker(alldata) {
     // initial map is based on data of first year
     startYear = 1961;
     selectedData = alldata[0][startYear];
+    var countryName;
 
     // create map (Datamaps)
     var basic_choropleth = new Datamap({
@@ -32,11 +33,17 @@ function mapMaker(alldata) {
 
                           // add tooltip for countries with data
                           popupTemplate: function(geo, data) {
-                              var countryName = "<div class='hoverinfo'>"
-                              + geo.properties.name + ":" + "<\div>" + "<br>",
-                              footprintValue = "<div class='hoverinfo'>"
-                              + Math.round(data.value * 100) / 100 + "<\div>";
-                              return countryName + footprintValue;
+                              if (data == null) {
+                                  countryName = "<div class='hoverinfo'>" +
+                                                  geo.properties.name + "<\div>";
+                              }
+                              else {
+                                  countryName = "<div class='hoverinfo'>" +
+                                                geo.properties.name + ": " +
+                                                Math.round(data.value * 100) /
+                                                100 + "<\div>";
+                              }
+                              return countryName;
                           },}
     });
 

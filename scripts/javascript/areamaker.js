@@ -9,17 +9,20 @@ var codeData;
 */
 function areaMaker(selectCode, codeCountryData) {
     codeData = codeCountryData
+    var selectCountry;
 
     // draw initial stacked area graph with data for the whole world
     if (selectCode == "null") {
-        var selectCountry = "the world";
+        selectCountry = "the world";
     }
 
     // draw stacked area graph for selected country
     else {
         for (i = 0; i < codeData.length; i++ ) {
             if (codeData[i].CountryCode == selectCode) {
-                var selectCountry = codeData[i].CountryName;
+                console.log(codeData[i], selectCode)
+
+                selectCountry = codeData[i].CountryName;
             }
         }
     };
