@@ -27,8 +27,6 @@ function areaMaker(selectCode, codeCountryData) {
     else {
         for (i = 0; i < codeData.length; i++ ) {
             if (codeData[i].CountryCode == selectCode) {
-                console.log(codeData[i], selectCode)
-
                 selectCountry = codeData[i].CountryName;
             }
         }
@@ -94,7 +92,12 @@ function areaMaker(selectCode, codeCountryData) {
         data = data.filter(function(row) {
             return row["countryCode"] == selectCode;
         })
-        // hier error toevoegen voor geen data?
+
+        // display error message if no data available at all
+        if (data.length == 0) {
+          d3.select(".noDataText")
+            .style("opacity", 1);
+        };
 
         // pick color for each column of data that you filter
         color.domain(d3.keys(data[0]).filter(function(key) {
@@ -134,7 +137,7 @@ function areaMaker(selectCode, codeCountryData) {
                .attr("class", "area")
                .attr("d", function(d, i) {
 
-                  // display error message if data is not available
+                  // display error message if detailed data is not available
                   if (isNaN(d.values[i].y)) {
                       d3.select(".noDataText")
                         .style("opacity", 1);
@@ -182,6 +185,15 @@ function areaMaker(selectCode, codeCountryData) {
       .style("font-weight", "bold")
       .style("opacity", 0)
       .text("No data available for this country");
+
+    // redraw graph for whole world upon clicking button
+    d3.select(".worldButton")
+      .on("click", function() {
+        			$("html, body").animate({
+        		        scrollTop: $("#sixthrow").offset().top -
+        		        		$("nav").outerHeight()}, "slow");
+              areaUpdate("null")
+      });
 };
 
 
@@ -195,15 +207,6 @@ function areaUpdate(selectCode) {
       .remove()
 
     areaMaker(selectCode, codeData);
-
-  // redraw graph for whole world upon clicking button
-  d3.select(".worldButton")
-    .on("click", function() {
-      			$("html, body").animate({
-      		        scrollTop: $("#sixthrow").offset().top -
-      		        		$("nav").outerHeight()}, "slow");
-            areaUpdate("null")
-    });
 };
 
 
@@ -313,18 +316,4 @@ function areaLegendMaker() {
       .style("font", "15px")
       .text("= Built-up land");
 
-    d3.select(".legendAreaGraph")
-      .append("rect")
-      .attr("class", "legend total")
-      .attr("y", totalAreaHeight / 14 * 7)
-      .attr("x", legendX)
-      .style("fill", "black");
-
-    d3.select(".legendAreaGraph")
-      .append("text")
-      .attr("class", "legendText")
-      .attr("y", totalAreaHeight / 14 * 7 + 12)
-      .attr("x", legendX + 35)
-      .style("font", "15px")
-      .text("= Total (if no detailed data available)");
 };
