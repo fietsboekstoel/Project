@@ -71,10 +71,3 @@ Uiteindelijk heb ik gekozen voor een range van groen via wit naar zwart, en lich
 - In eerste instantie leek het me mooi en duidelijk om tegelijk de kaart en de scatter plot te kunnen zien veranderen op basis van de slider. Helaas bleek dat niet binnen het scherm te passen omdat dan de meeste landen zo klein zouden worden dat de kaart weinig informatief meer zou zijn. Daarom heb ik uiteindelijk besloten om de pagina zo in te delen dat je de hele kaart met info, legenda en slider in een keer kunt bekijken, en als je daarna naar beneden scrollt de hele scatter plot met dropdown menu en de slider erbij in een keer kunt bekijken. Bij het klikken op 1 van die 2 visualisaties scrollt de pagina vanzelf naar de derde visualisatie die daar ook weer beeldvullend is inclusief legenda.
 
 - Alle gedownloade data handig samenvoegen heeft me helaas vrij veel tijd gekost. In het vervolg zou ik misschien kiezen voor een grote dataset waar alles in staat en die in een keer te gebruiken is. Daarna is op tijd klaar zijn denk ik mijn grootste challenge gebleven.
-
-
-
-
-Clearly describe challenges that your have met during development. Document all important changes that your have made with regard to your design document (from the PROCESS.md). Here, we can see how much you have learned in the past month.
-
-Defend your decisions by writing an argument of a most a single paragraph. Why was it good to do it different than you thought before? Are there trade-offs for your current solution? In an ideal world, given much more time, would you choose another solution?
